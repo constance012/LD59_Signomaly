@@ -67,6 +67,8 @@ namespace AforgeStudios.Signomaly
 
 		private void ShowAndStartTimer()
 		{
+			_visualHandler.SwitchState(PuzzleObjectVisualHandler.VisualState.Anomaly);
+
 			_timer.gameObject.SetActive(true);
 			_timer.StartTimer();
 
