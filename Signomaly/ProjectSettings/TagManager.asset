@@ -3,19 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - WorldCanvas
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Environment
+  - Decorations
+  - Puzzle Objects
+  - Key Objects
+  - Ground
   - 
   - 
   - 
