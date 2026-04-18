@@ -12,6 +12,7 @@ namespace AforgeStudios.Signomaly
 		[SerializeField] protected LayerMask _playerLayer;
 
 		public string ObjectName => _objectName;
+		public bool IsPlayerInRange { get; protected set; }
 
 		protected Collider[] _overlappedColliders;
 
@@ -34,8 +35,10 @@ namespace AforgeStudios.Signomaly
 		protected void CheckForPlayerInteraction()
 		{
 			int count = Physics.OverlapSphereNonAlloc(transform.position, _interactRadius, _overlappedColliders, _playerLayer);
-			
-			if (count > 0)
+
+			IsPlayerInRange = count > 0;
+
+			if (IsPlayerInRange)
 			{
 				ReadPlayerInput();
 			}
