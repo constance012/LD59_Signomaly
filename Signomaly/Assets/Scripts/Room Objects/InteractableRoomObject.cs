@@ -6,12 +6,15 @@ namespace AforgeStudios.Signomaly
 	public abstract class InteractableRoomObject : MonoBehaviour
 	{
 		[Header("Shared Settings"), Space]
+		[SerializeField] protected string _objectID;
 		[SerializeField] protected string _objectName;
 		[SerializeField] protected float _interactRadius = 2f;
 		[SerializeField] protected int _maximumOverlappedColliders = 1;
 		[SerializeField] protected LayerMask _playerLayer;
 
+		public string ObjectID => _objectID;
 		public string ObjectName => _objectName;
+
 		public bool IsPlayerInRange { get; protected set; }
 
 		protected Collider[] _overlappedColliders;
