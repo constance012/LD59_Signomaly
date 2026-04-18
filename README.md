@@ -1,4 +1,4 @@
-# LD59 UNTITLED ENTRY
+# SIGNOMALY
 
 <p align="center">
   <img src="Ingame_Captures/Cover_Art.png" width="630" height="500">
@@ -31,7 +31,7 @@ This `develop` branch is __PROTECTED__, it reflects the currently stable state o
 
 Check out the _jam submission_ page [__here__](https://ldjam.com/events/ludum-dare/57/).
 
-Play it _directly_ or download for your _current platform_ [__here__](https://constance012.itch.io/ld59-dummy-project).
+Play it _directly_ or download for your _current platform_ [__here__](https://constance012.itch.io/signomaly).
 
 ## INGAME CAPTURES
 
