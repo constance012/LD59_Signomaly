@@ -76,3 +76,6 @@ crashlytics-build.properties
 
 # Unity 6.2+ AI generated assets data
 [Gg]enerated[Aa]ssets/
+
+# Performance testing data
+[Pp]erformance[Tt]est[Rr]un*
