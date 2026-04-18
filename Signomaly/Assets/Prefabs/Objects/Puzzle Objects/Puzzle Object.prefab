@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 4062543674230879457}
   - component: {fileID: 6208183105950331810}
   - component: {fileID: 5403949659868477335}
+  - component: {fileID: 7962232979685257976}
   m_Layer: 0
   m_Name: Puzzle Timer
   m_TagString: Untagged
@@ -285,6 +286,18 @@ MonoBehaviour:
   _durationSeconds: 30
   _startOnAwake: 0
   _debugSubtractSeconds: 10
+--- !u!114 &7962232979685257976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9039868582048415701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cacffe943cc32c44eb46964efd5a1cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.WorldUIBillboard
 --- !u!1 &9074307292073560923
 GameObject:
   m_ObjectHideFlags: 0
