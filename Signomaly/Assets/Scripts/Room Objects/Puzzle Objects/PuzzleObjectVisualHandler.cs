@@ -10,37 +10,76 @@ namespace AforgeStudios.Signomaly
 		[SerializeField] private MeshFilter _meshFilter;
 		[SerializeField] private MeshRenderer _meshRenderer;
 
-		[Header("Mesh Assets"), Space]
-		[SerializeField] private Mesh _normalObjectMesh;
-		[SerializeField] private Mesh _anomalyObjectMesh;
+		[Header("Visual State Data"), Space]
+		[SerializeField] private VisualStateData _normalStateData;
+		[SerializeField] private VisualStateData _anomalyStateData;
 
 		public Material RendererMaterial { get; private set; }
 		public VisualState CurrentState { get; private set; } = VisualState.Normal;
 		public bool IsInAnomalyState => CurrentState == VisualState.Anomaly;
 
+		private Vector3 _originalVisualLocalPosition;
+
 		private void Awake()
 		{
 			RendererMaterial = _meshRenderer.material;
+			_originalVisualLocalPosition = _objectVisualTransform.localPosition;
 		}
 
 		public void SwitchState(VisualState newState)
 		{
 			CurrentState = newState;
 			
-			Mesh newMesh = CurrentState switch
+			var newStateData = CurrentState switch
 			{
-				VisualState.Normal => _normalObjectMesh,
-				VisualState.Anomaly => _anomalyObjectMesh,
-				_ => _normalObjectMesh
+				VisualState.Normal => _normalStateData,
+				VisualState.Anomaly => _anomalyStateData,
+				_ => _normalStateData
 			};
 
-			_meshFilter.mesh = newMesh;
+			UpdateVisual(newStateData);
+
+		}
+
+		private void UpdateVisual(VisualStateData stateData)
+		{
+			_meshFilter.mesh = stateData.Mesh;
+			_objectVisualTransform.localEulerAngles = stateData.LocalRotation;
+			_objectVisualTransform.localScale = stateData.LocalScale;
+
+			if (stateData.LocalPositionOffset != Vector3.zero)
+			{
+				_objectVisualTransform.localPosition += stateData.LocalPositionOffset;
+			}
+			else
+			{
+				_objectVisualTransform.localPosition = _originalVisualLocalPosition;
+			}
+
+			if (stateData.OverrideMaterial != null)
+			{
+				_meshRenderer.material = stateData.OverrideMaterial;
+			}
+			else
+			{
+				_meshRenderer.material = RendererMaterial;
+			}
 		}
 		
 		public enum VisualState
 		{
 			Normal,
 			Anomaly
+		}
+
+		[Serializable]
+		public class VisualStateData
+		{
+			public Mesh Mesh;
+			public Vector3 LocalPositionOffset;
+			public Vector3 LocalRotation;
+			public Vector3 LocalScale = Vector3.one;
+			public Material OverrideMaterial;
 		}
 	}
 }
