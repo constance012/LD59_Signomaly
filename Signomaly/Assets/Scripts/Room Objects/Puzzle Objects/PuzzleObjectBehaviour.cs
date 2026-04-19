@@ -45,12 +45,17 @@ namespace AforgeStudios.Signomaly
 #region Interaction
 		public override void Interact()
 		{
+			if (_isPuzzleTimerStarted)
+			{
+				return;
+			}
+
 			ShowAndStartTimer();
 		}
 
 		private void CheckForAutoInteract()
 		{
-			if (IsPlayerInRange)
+			if (_interactionReceiver.CanBeInteractedWith)
 			{
 				_autoInteractTimer -= Time.deltaTime;
 

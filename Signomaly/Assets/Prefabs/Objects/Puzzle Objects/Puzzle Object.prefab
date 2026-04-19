@@ -9,7 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6590523518089325036}
-  m_Layer: 0
+  - component: {fileID: 3792014933089328675}
+  - component: {fileID: 5041851102524574025}
+  m_Layer: 8
   m_Name: Physic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,6 +33,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5033595281086654241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &3792014933089328675
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325462553890544452}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5041851102524574025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325462553890544452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e924c1abd6b9a604b9ad7b1fce9c6597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.InteractionReceiver
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1253198637360759906
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,7 +80,7 @@ GameObject:
   - component: {fileID: 5033595281086654241}
   - component: {fileID: 259978175719809920}
   - component: {fileID: 8001633325045733490}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Puzzle Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,12 +117,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9da9af04542c14dbddcfa915aa869f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.PuzzleObjectBehaviour
+  _objectID: 
   _objectName: Puzzle Object
-  _interactRadius: 2
-  _maximumOverlappedColliders: 1
-  _playerLayer:
-    serializedVersion: 2
-    m_Bits: 8
+  _interactionReceiver: {fileID: 5041851102524574025}
   _visualHandler: {fileID: 8001633325045733490}
   _timer: {fileID: 5403949659868477335}
   _autoInteractDelaySeconds: 2.5
@@ -128,7 +163,7 @@ GameObject:
   - component: {fileID: 3258550818811245558}
   - component: {fileID: 140271121090121202}
   - component: {fileID: 6543532708572793}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +254,7 @@ GameObject:
   - component: {fileID: 6208183105950331810}
   - component: {fileID: 5403949659868477335}
   - component: {fileID: 7962232979685257976}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Puzzle Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +344,7 @@ GameObject:
   - component: {fileID: 4176418024237934518}
   - component: {fileID: 5624521514785839309}
   - component: {fileID: 2146548823418668752}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Timer Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}

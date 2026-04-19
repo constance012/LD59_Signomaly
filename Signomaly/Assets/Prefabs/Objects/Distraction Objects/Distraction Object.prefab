@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6894445660422251628}
   - component: {fileID: 8925500444931399031}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Distraction Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,12 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4ee877f17c7b7449a537c4e6f410cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.DistractionObject
+  _objectID: 
   _objectName: Distraction Object Base
-  _interactRadius: 2
-  _maximumOverlappedColliders: 1
-  _playerLayer:
-    serializedVersion: 2
-    m_Bits: 8
+  _interactionReceiver: {fileID: 4154469712503940503}
 --- !u!1 &3911890785192411536
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +58,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9058424308211255182}
-  m_Layer: 0
+  - component: {fileID: 77665946966695523}
+  - component: {fileID: 4154469712503940503}
+  m_Layer: 11
   m_Name: Physic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,6 +82,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6894445660422251628}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &77665946966695523
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3911890785192411536}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4154469712503940503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3911890785192411536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e924c1abd6b9a604b9ad7b1fce9c6597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.InteractionReceiver
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5988819187330124960
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +129,7 @@ GameObject:
   - component: {fileID: 5646372078982402383}
   - component: {fileID: 4809675828973915220}
   - component: {fileID: 1658457057086769710}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
