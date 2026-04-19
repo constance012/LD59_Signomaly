@@ -1,4 +1,5 @@
 using CSTGames.SharedResources;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace AforgeStudios.Signomaly
@@ -21,6 +22,20 @@ namespace AforgeStudios.Signomaly
 			{
 				NewInputManager.Instance.GetInputAction(KeybindingAction.Movement).Disable();
 				NewInputManager.Instance.GetInputAction(KeybindingAction.Interact).Disable();
+			}
+		}
+
+		public void ToggleLockCursor(bool isLocked)
+		{
+			if (isLocked)
+			{
+				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible = false;
+			}
+			else
+			{
+				Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
 			}
 		}
 	}
