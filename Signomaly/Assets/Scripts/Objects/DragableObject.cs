@@ -1,36 +1,39 @@
 using UnityEngine;
 
-public class DragableObject : MonoBehaviour
+namespace AforgeStudios.Signomaly
 {
-    [Header("References"), Space]
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private Collider col;
-    [SerializeField] InteractableObject iO;
-
-    private Transform target;
-
-    public void PickObj(Transform transform)
+    public class DragableObject : MonoBehaviour
     {
-        this.target = transform;
-        rb.useGravity = false;
-        rb.isKinematic = true;
-        col.enabled = false;
-    }
+        [Header("References"), Space]
+        [SerializeField] private Rigidbody rb;
+        [SerializeField] private Collider col;
+        [SerializeField] InteractableObject iO;
 
-    public void DropObj()
-    {
-        this.target = null;
-        rb.useGravity = true;
-        rb.isKinematic = false;
-        col.enabled = true;
-        iO.SetCanShowUI(true);
-    }
+        private Transform target;
 
-    private void FixedUpdate()
-    {
-        if(target != null)
+        public void PickObj(Transform transform)
         {
-            rb.MovePosition(target.position);
+            this.target = transform;
+            rb.useGravity = false;
+            rb.isKinematic = true;
+            col.enabled = false;
+        }
+
+        public void DropObj()
+        {
+            this.target = null;
+            rb.useGravity = true;
+            rb.isKinematic = false;
+            col.enabled = true;
+            iO.SetCanShowUI(true);
+        }
+
+        private void FixedUpdate()
+        {
+            if(target != null)
+            {
+                rb.MovePosition(target.position);
+            }
         }
     }
 }

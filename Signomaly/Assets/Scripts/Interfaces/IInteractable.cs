@@ -1,10 +1,13 @@
 using UnityEngine;
 
-public interface IInteractable
+namespace AforgeStudios.Signomaly
 {
-    public void Interact(Transform interactorTransform);
-    public string GetInteractText();
-    public Transform GetTransform();
-    public bool GetLockInteract();
-    public void SetLockInteract(bool lockInteract);
+    public interface IInteractable
+    {
+        public void Interact(Transform interactorTransform);
+        public string GetInteractText();
+        public Transform GetTransform();
+        public bool GetLockInteract();
+        public void SetLockInteract(bool lockInteract);
+    }
 }

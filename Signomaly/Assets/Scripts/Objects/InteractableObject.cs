@@ -2,109 +2,112 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InteractableObject : MonoBehaviour, IInteractable
+namespace AforgeStudios.Signomaly
 {
-    [Header("Interact Settings"), Space]
-    [SerializeField] private string interactText;
-    [SerializeField] private bool lockInteract = false;
-    [SerializeField] private float detectedRange;
-    [SerializeField] private Vector3 offset;
-
-    [Header("References"), Space]
-    [SerializeField] private Transform interactableObjUIPrefab;
-
-    private Key interactKey;
-    private Transform playerTransform;
-    private Transform interactUITransform;
-
-    private bool canShowUI = true;
-
-    private void Update()
+    public class InteractableObject : MonoBehaviour, IInteractable
     {
-        if(CheckPlayer())
+        [Header("Interact Settings"), Space]
+        [SerializeField] private string interactText;
+        [SerializeField] private bool lockInteract = false;
+        [SerializeField] private float detectedRange;
+        [SerializeField] private Vector3 offset;
+
+        [Header("References"), Space]
+        [SerializeField] private Transform interactableObjUIPrefab;
+
+        private Key interactKey;
+        private Transform playerTransform;
+        private Transform interactUITransform;
+
+        private bool canShowUI = true;
+
+        private void Update()
         {
-            if(interactUITransform == null && canShowUI)
+            if(CheckPlayer())
             {
-                interactUITransform = Instantiate(interactableObjUIPrefab, transform.position + offset, Quaternion.identity, transform);
-                InteractableObjUI interactableObjUI = GetComponentInChildren<InteractableObjUI>();
-                if(interactableObjUI != null)
-                    interactableObjUI.Show(interactKey.ToString(), interactText);
+                if(interactUITransform == null && canShowUI)
+                {
+                    interactUITransform = Instantiate(interactableObjUIPrefab, transform.position + offset, Quaternion.identity, transform);
+                    InteractableObjUI interactableObjUI = GetComponentInChildren<InteractableObjUI>();
+                    if(interactableObjUI != null)
+                        interactableObjUI.Show(interactKey.ToString(), interactText);
+                }
+
+                if(interactUITransform != null)
+                {
+                    //UI Look At Player
+                    Vector3 reverseDirection = transform.position - playerTransform.position;
+
+                    if(reverseDirection != Vector3.zero)
+                        interactUITransform.rotation = Quaternion.LookRotation(reverseDirection);       
+                }
             }
-
-            if(interactUITransform != null)
+            else
             {
-                //UI Look At Player
-                Vector3 reverseDirection = transform.position - playerTransform.position;
-
-                if(reverseDirection != Vector3.zero)
-                    interactUITransform.rotation = Quaternion.LookRotation(reverseDirection);       
-            }
-        }
-        else
-        {
-            if(interactUITransform != null)
-                DestroyUI();
-        }
-    }
-
-    public void DestroyUI()
-    {
-        Destroy(interactUITransform.gameObject);
-    }
-
-    private bool CheckPlayer()
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, detectedRange);
-        foreach (Collider collider in colliders)
-        {
-            PlayerInteract playerInteract = collider.GetComponentInParent<PlayerInteract>();
-            if (playerInteract != null)
-            {
-                playerTransform = playerInteract.transform;
-
-                interactKey = playerInteract.GetInteractKey();
-
-                return true;
+                if(interactUITransform != null)
+                    DestroyUI();
             }
         }
 
-        return false;
-    }
+        public void DestroyUI()
+        {
+            Destroy(interactUITransform.gameObject);
+        }
 
-    public string GetInteractText()
-    {
-        return interactText;
-    }
+        private bool CheckPlayer()
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, detectedRange);
+            foreach (Collider collider in colliders)
+            {
+                PlayerInteract playerInteract = collider.GetComponentInParent<PlayerInteract>();
+                if (playerInteract != null)
+                {
+                    playerTransform = playerInteract.transform;
 
-    public bool GetLockInteract()
-    {
-        return lockInteract;
-    }
+                    interactKey = playerInteract.GetInteractKey();
 
-    public Transform GetTransform()
-    {
-        return transform;
-    }
+                    return true;
+                }
+            }
 
-    public void Interact(Transform interactorTransform)
-    {
-        SetCanShowUI(false);
-        DestroyUI();
-    }
+            return false;
+        }
 
-    public void SetLockInteract(bool lockInteract)
-    {
-        this.lockInteract = lockInteract;
-    }
+        public string GetInteractText()
+        {
+            return interactText;
+        }
 
-    public void SetCanShowUI(bool canShowUI)
-    {
-        this.canShowUI = canShowUI;
-    }
+        public bool GetLockInteract()
+        {
+            return lockInteract;
+        }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectedRange);
-    }
+        public Transform GetTransform()
+        {
+            return transform;
+        }
+
+        public void Interact(Transform interactorTransform)
+        {
+            SetCanShowUI(false);
+            DestroyUI();
+        }
+
+        public void SetLockInteract(bool lockInteract)
+        {
+            this.lockInteract = lockInteract;
+        }
+
+        public void SetCanShowUI(bool canShowUI)
+        {
+            this.canShowUI = canShowUI;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, detectedRange);
+        }
+    }    
 }

@@ -1,15 +1,18 @@
 using TMPro;
 using UnityEngine;
 
-public class InteractableObjUI : MonoBehaviour
+namespace AforgeStudios.Signomaly
 {
-    [Header("References"), Space]
-    [SerializeField] private TextMeshProUGUI keyText;
-    [SerializeField] private TextMeshProUGUI interactText;
-
-    public void Show(string keyStr, string interactStr)
+    public class InteractableObjUI : MonoBehaviour
     {
-        keyText.text = keyStr;
-        interactText.text = interactStr;
+        [Header("References"), Space]
+        [SerializeField] private TextMeshProUGUI keyText;
+        [SerializeField] private TextMeshProUGUI interactText;
+
+        public void Show(string keyStr, string interactStr)
+        {
+            keyText.text = keyStr;
+            interactText.text = interactStr;
+        }
     }
 }
