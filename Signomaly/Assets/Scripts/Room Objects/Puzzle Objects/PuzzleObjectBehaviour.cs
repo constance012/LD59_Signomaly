@@ -98,6 +98,8 @@ namespace AforgeStudios.Signomaly
 			_timer.gameObject.SetActive(true);
 			_timer.StartTimer();
 
+			_currentPuzzle.ShowInstructions();
+
 			_isPuzzleTriggered = true;
 			OnPuzzleTriggered?.Invoke();
 		}

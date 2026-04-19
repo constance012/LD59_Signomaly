@@ -11,6 +11,7 @@ namespace AforgeStudios.Signomaly
 		
 		[Header("Required Object Settings"), Space]
 		[SerializeField] private string _requiredObjectID;
+		[SerializeField] private LayerMask _keyObjectLayerMask;
 
 		[Header("Puzzle Info"), Space]
 		[SerializeField] private string _clueTitle;
@@ -19,6 +20,8 @@ namespace AforgeStudios.Signomaly
 		public bool IsPuzzleCompleted { get; set; }
 
 		public event Action OnPuzzleCompleted;
+
+		private const string WRONG_OBJECT_SUBMISSION_MESSAGE = "This object is incorrect!";
 
 		protected override void Setup()
 		{
@@ -29,21 +32,9 @@ namespace AforgeStudios.Signomaly
 			_clueString = _clueString.Trim();
 		}
 
-		protected override void SubscribeEvents()
-		{
-			base.SubscribeEvents();
-			_puzzleObject.OnPuzzleTriggered += PuzzleObject_OnPuzzleTriggered;
-		}
-
-		protected override void UnsubscribeEvents()
-		{
-			base.UnsubscribeEvents();
-			_puzzleObject.OnPuzzleTriggered -= PuzzleObject_OnPuzzleTriggered;
-		}
-
 		protected override void CheckForInteraction()
 		{
-			if (!_puzzleObject.IsPuzzleTriggered)
+			if (!_puzzleObject.IsPuzzleTriggered || IsPuzzleCompleted)
 			{
 				return;
 			}
@@ -56,10 +47,11 @@ namespace AforgeStudios.Signomaly
 
 		private bool TrySubmitKeyObject()
 		{
-			var nearestReceiver = GetNearestReceiver();
+			var nearestReceiver = GetNearestReceiverWithLayerMask(_keyObjectLayerMask);
 
 			if (nearestReceiver == null)
 			{
+				ShowInstructions();
 				return false;
 			}
 
@@ -81,14 +73,14 @@ namespace AforgeStudios.Signomaly
 			OnPuzzleCompleted?.Invoke();
 		}
 
+		public void ShowInstructions()
+		{
+			PuzzleInstructionUIHandler.Instance.ShowInstructions(_clueTitle, _clueString);
+		}
+		
 		private void HandleWrongObjectSubmission()
 		{
-			Debug.Log("Wrong object submitted!");
-		}
-
-		private void PuzzleObject_OnPuzzleTriggered()
-		{
-			Debug.Log($"Puzzle \"{_clueTitle}\" triggered! Clue: \"{_clueString}\"");
+			PuzzleInstructionUIHandler.Instance.ShowInstructions(_clueTitle, WRONG_OBJECT_SUBMISSION_MESSAGE);
 		}
 	}
 }

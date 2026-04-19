@@ -8,5 +8,6 @@ namespace AforgeStudios.Signomaly
 		event Action OnPuzzleCompleted;
 
 		void SolvePuzzle();
+		void ShowInstructions();
 	}
 }

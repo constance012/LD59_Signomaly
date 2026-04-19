@@ -10,7 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1253198637360759906, guid: 4f596d54c054ec54eaa9355830a22d29, type: 3}
       propertyPath: m_Name
-      value: Object Finding Puzzle Object
+      value: _Object Finding Puzzle Object
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033595281086654241, guid: 4f596d54c054ec54eaa9355830a22d29, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5033595281086654241, guid: 4f596d54c054ec54eaa9355830a22d29, type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,12 +82,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.ObjectFindingPuzzleInteraction
   _interactRadius: 2
-  _maximumOverlappedColliders: 1
+  _maximumOverlappedColliders: 2
   _includedLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 520
   _puzzleObject: {fileID: 4019368622225626823}
   _requiredObjectID: 
+  _keyObjectLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  _clueTitle: 
   _clueString: 
 --- !u!114 &4019368622225626823 stripped
 MonoBehaviour:

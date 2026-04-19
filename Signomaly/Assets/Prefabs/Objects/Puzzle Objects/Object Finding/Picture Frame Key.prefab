@@ -14,8 +14,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 436626590693150680, guid: abdbadfbf1dbb754c84194bfe4cb6328, type: 3}
       propertyPath: _clueString
-      value: I am not the door. I am not the room within. But without me the door
-        remains nothing but a wall. And the room within remains nothing but a secret.
+      value: 'I am not the door.
+
+        I am not the room within.
+
+        But
+        without me the door remains nothing but a wall.
+
+        And the room within
+        remains nothing but a secret.
+
+        What am I?'
       objectReference: {fileID: 0}
     - target: {fileID: 436626590693150680, guid: abdbadfbf1dbb754c84194bfe4cb6328, type: 3}
       propertyPath: _requiredObjectID
@@ -24,6 +33,14 @@ PrefabInstance:
     - target: {fileID: 2681976280997064997, guid: abdbadfbf1dbb754c84194bfe4cb6328, type: 3}
       propertyPath: m_Name
       value: Picture Frame Key
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019368622225626823, guid: abdbadfbf1dbb754c84194bfe4cb6328, type: 3}
+      propertyPath: _objectID
+      value: PZ_PICTURE2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019368622225626823, guid: abdbadfbf1dbb754c84194bfe4cb6328, type: 3}
+      propertyPath: _objectName
+      value: Picture Frame 2
       objectReference: {fileID: 0}
     - target: {fileID: 8180479277846663782, guid: abdbadfbf1dbb754c84194bfe4cb6328, type: 3}
       propertyPath: m_LocalPosition.x

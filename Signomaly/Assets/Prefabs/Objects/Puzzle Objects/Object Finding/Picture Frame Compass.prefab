@@ -14,9 +14,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 436626590693150680, guid: abdbadfbf1dbb754c84194bfe4cb6328, type: 3}
       propertyPath: _clueString
-      value: I have no eyes, yet I always gaze in one direction. I have no legs,
-        yet I lead the way for every traveler. Alone in the deep sea or the dense
-        forest, men trust me more than they trust themselves. What am I?
+      value: 'I have no eyes, yet I always gaze in one direction.
+
+        I have
+        no legs, yet I lead the way for every traveler.
+
+        Alone in the deep
+        sea or the dense forest, men trust me more than they trust themselves.
+
+        What
+        am I?'
       objectReference: {fileID: 0}
     - target: {fileID: 436626590693150680, guid: abdbadfbf1dbb754c84194bfe4cb6328, type: 3}
       propertyPath: _requiredObjectID
@@ -25,6 +32,14 @@ PrefabInstance:
     - target: {fileID: 2681976280997064997, guid: abdbadfbf1dbb754c84194bfe4cb6328, type: 3}
       propertyPath: m_Name
       value: Picture Frame Compass
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019368622225626823, guid: abdbadfbf1dbb754c84194bfe4cb6328, type: 3}
+      propertyPath: _objectID
+      value: PZ_PICTURE1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019368622225626823, guid: abdbadfbf1dbb754c84194bfe4cb6328, type: 3}
+      propertyPath: _objectName
+      value: Picture Frame 1
       objectReference: {fileID: 0}
     - target: {fileID: 8180479277846663782, guid: abdbadfbf1dbb754c84194bfe4cb6328, type: 3}
       propertyPath: m_LocalPosition.x
