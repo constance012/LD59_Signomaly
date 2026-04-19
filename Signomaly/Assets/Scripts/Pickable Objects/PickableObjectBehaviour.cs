@@ -23,35 +23,19 @@ namespace AforgeStudios.Signomaly
 
         private void Update()
         {
-            if(CheckPlayer())
+            if (CheckPlayer())
             {
-                if(interactUITransform == null && canShowUI)
+                if (interactUITransform == null)
                 {
                     interactUITransform = Instantiate(interactableObjUIPrefab, transform.position + offset, Quaternion.identity, transform);
-                    InteractableObjUI interactableObjUI = GetComponentInChildren<InteractableObjUI>();
-                    if(interactableObjUI != null)
-                        interactableObjUI.Show(interactKey.ToString(), interactText);
                 }
 
-                if(interactUITransform != null)
-                {
-                    //UI Look At Player
-                    Vector3 reverseDirection = transform.position - playerTransform.position;
-
-                    if(reverseDirection != Vector3.zero)
-                        interactUITransform.rotation = Quaternion.LookRotation(reverseDirection);       
-                }
+                TryShowUIPrompt();
             }
-            else
+            else if (interactUITransform != null)
             {
-                if(interactUITransform != null)
-                    DestroyUI();
+                SetUIPromptActive(false);
             }
-        }
-
-        public void DestroyUI()
-        {
-            Destroy(interactUITransform.gameObject);
         }
 
         private bool CheckPlayer()
@@ -91,7 +75,7 @@ namespace AforgeStudios.Signomaly
         public void PickUp(Transform interactorTransform)
         {
             SetCanShowUI(false);
-            DestroyUI();
+            SetUIPromptActive(false);
         }
 
         public void SetLockPickUpState(bool lockInteract)
@@ -104,10 +88,28 @@ namespace AforgeStudios.Signomaly
             this.canShowUI = canShowUI;
         }
 
+        private void SetUIPromptActive(bool isActive)
+        {
+            interactUITransform.gameObject.SetActive(isActive);
+        }
+
+        private void TryShowUIPrompt()
+        {
+            if (canShowUI)
+            {
+                InteractableObjUI interactableObjUI = GetComponentInChildren<InteractableObjUI>(true);
+                if (interactableObjUI != null)
+                {
+                    interactableObjUI.Show(interactKey.ToString(), interactText);
+                    SetUIPromptActive(true);
+                }
+            }
+        }
+
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, detectedRange);
         }
-    }    
+    }
 }
