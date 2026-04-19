@@ -6,7 +6,7 @@ namespace AforgeStudios.Signomaly
 	{
 		protected override void CheckForInteraction()
 		{
-			if (LegacyInputManager.Instance.GetKeyDown(KeybindingAction.Interact))
+			if (NewInputManager.Instance.WasPressedThisFrame(KeybindingAction.Interact))
 			{
 				InteractWithNearestReceiver();
 			}
