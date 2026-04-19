@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 259978175719809920}
   - component: {fileID: 8001633325045733490}
   m_Layer: 8
-  m_Name: Puzzle Object
+  m_Name: _Puzzle Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

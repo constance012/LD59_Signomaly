@@ -59,7 +59,6 @@ namespace AforgeStudios.Signomaly
 
 			if (newReceiversCount != _previousReceiversInRangeCount)
 			{
-				Debug.Log($"Receivers in range count changed: {_previousReceiversInRangeCount} -> {newReceiversCount}");
 				DisposeOldReceivers();
 				FetchNewReceivers();
 

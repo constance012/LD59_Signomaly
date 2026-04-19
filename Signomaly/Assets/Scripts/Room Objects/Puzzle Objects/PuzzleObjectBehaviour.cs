@@ -1,8 +1,10 @@
+using System;
 using CSTGames.SharedResources;
 using UnityEngine;
 
 namespace AforgeStudios.Signomaly
 {
+	[RequireComponent(typeof(IPuzzle))]
 	public sealed class PuzzleObjectBehaviour : InteractableRoomObject
 	{
 		[Header("Visual Handler"), Space]
@@ -16,14 +18,19 @@ namespace AforgeStudios.Signomaly
 		[SerializeField] private float _anomalyStateDurationSeconds = 7f;
 		[SerializeField] private Vector2 _anomalyStateSwitchDelayRangeSeconds = new(10f, 15f);
 
+		public bool IsPuzzleTriggered => _isPuzzleTriggered;
+
+		public event Action OnPuzzleTriggered;
+
+		private IPuzzle _currentPuzzle;
 		private float _anomalyStateSwitchTimer;
 		private float _anomalyStateElapsedTime;
 		private float _autoInteractTimer;
-		private bool _isPuzzleTimerStarted;
+		private bool _isPuzzleTriggered;
 
 		private void Update()
 		{
-			if (_isPuzzleTimerStarted)
+			if (_isPuzzleTriggered)
 			{
 				return;
 			}
@@ -32,9 +39,23 @@ namespace AforgeStudios.Signomaly
 			HandleStateSwitching();
 		}
 
+		protected override void SubscribeEvents()
+		{
+			base.SubscribeEvents();
+			_currentPuzzle.OnPuzzleCompleted += IPuzzle_OnPuzzleCompleted;
+		}
+
+		protected override void UnsubscribeEvents()
+		{
+			base.UnsubscribeEvents();
+			_currentPuzzle.OnPuzzleCompleted -= IPuzzle_OnPuzzleCompleted;
+		}
+
 		protected override void SetupComponents()
 		{
 			base.SetupComponents();
+
+			_currentPuzzle = GetComponent<IPuzzle>();
 
 			_anomalyStateSwitchTimer = _anomalyStateSwitchDelayRangeSeconds.RandomBetweenEnds();
 			_autoInteractTimer = _autoInteractDelaySeconds;
@@ -45,7 +66,7 @@ namespace AforgeStudios.Signomaly
 #region Interaction
 		public override void Interact()
 		{
-			if (_isPuzzleTimerStarted)
+			if (_isPuzzleTriggered)
 			{
 				return;
 			}
@@ -77,7 +98,8 @@ namespace AforgeStudios.Signomaly
 			_timer.gameObject.SetActive(true);
 			_timer.StartTimer();
 
-			_isPuzzleTimerStarted = true;
+			_isPuzzleTriggered = true;
+			OnPuzzleTriggered?.Invoke();
 		}
 #endregion
 
@@ -115,6 +137,18 @@ namespace AforgeStudios.Signomaly
 				_anomalyStateElapsedTime = 0f;
 				_anomalyStateSwitchTimer = _anomalyStateSwitchDelayRangeSeconds.RandomBetweenEnds();
 			}
+		}
+#endregion
+
+#region Puzzle Handling
+		private void IPuzzle_OnPuzzleCompleted()
+		{
+			_visualHandler.SwitchState(PuzzleObjectVisualHandler.VisualState.Normal);
+
+			_timer.StopTimer();
+			_timer.gameObject.SetActive(false);
+
+			Debug.Log($"Puzzle solved: {gameObject.name}, remaining time: {_timer.RemainingTimeFormatted}", this);
 		}
 #endregion
 	}
