@@ -59,7 +59,7 @@ namespace AforgeStudios.Signomaly
             Collider[] colliders = Physics.OverlapSphere(transform.position, detectedRange);
             foreach (Collider collider in colliders)
             {
-                PlayerInteract playerInteract = collider.GetComponentInParent<PlayerInteract>();
+                PlayerPickAndDrop playerInteract = collider.GetComponentInParent<PlayerPickAndDrop>();
                 if (playerInteract != null)
                 {
                     playerTransform = playerInteract.transform;
