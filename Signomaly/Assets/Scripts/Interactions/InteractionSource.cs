@@ -20,10 +20,25 @@ namespace AforgeStudios.Signomaly
 			Setup();
 		}
 
+		protected virtual void OnEnable()
+		{
+			SubscribeEvents();
+		}
+
+		protected virtual void OnDisable()
+		{
+			UnsubscribeEvents();
+		}
+
 		protected virtual void LateUpdate()
 		{
 			DetectReceivers();
 		}
+
+#region Setup
+		protected virtual void SubscribeEvents() { }
+
+		protected virtual void UnsubscribeEvents() { }
 
 		protected virtual void Setup()
 		{
@@ -32,6 +47,7 @@ namespace AforgeStudios.Signomaly
 			_overlappedColliders = new Collider[_maximumOverlappedColliders];
 			_receiversInRange = new InteractionReceiver[_maximumOverlappedColliders];
 		}
+#endregion
 
 #region Interaction Detection and Handling
 		protected void DetectReceivers()
@@ -43,7 +59,6 @@ namespace AforgeStudios.Signomaly
 
 			if (newReceiversCount != _previousReceiversInRangeCount)
 			{
-				Debug.Log($"Receivers in range count changed: {_previousReceiversInRangeCount} -> {newReceiversCount}");
 				DisposeOldReceivers();
 				FetchNewReceivers();
 
@@ -63,7 +78,9 @@ namespace AforgeStudios.Signomaly
 				_overlappedColliders[i] = null;
 			}
 		}
+#endregion
 
+#region Receiver Interactions
 		protected void FetchNewReceivers()
 		{
 			for (int i = 0; i < _overlappedColliders.Length; i++)
@@ -94,7 +111,7 @@ namespace AforgeStudios.Signomaly
 			}
 		}
 
-		protected void InteractWithNearestReceiver()
+		protected InteractionReceiver GetNearestReceiver()
 		{
 			InteractionReceiver nearestReceiver = null;
 			float nearestDistanceSqr = float.MaxValue;
@@ -112,6 +129,35 @@ namespace AforgeStudios.Signomaly
 					}
 				}
 			}
+
+			return nearestReceiver;
+		}
+
+		protected InteractionReceiver GetNearestReceiverWithLayerMask(LayerMask layerMask)
+		{
+			InteractionReceiver nearestReceiver = null;
+			float nearestDistanceSqr = float.MaxValue;
+
+			foreach (var receiver in _receiversInRange)
+			{
+				if (receiver != null && receiver.CanBeInteractedWith && IsReceiverInLayerMask(receiver, layerMask))
+				{
+					float distanceSqr = (receiver.transform.position - transform.position).sqrMagnitude;
+
+					if (distanceSqr < nearestDistanceSqr)
+					{
+						nearestDistanceSqr = distanceSqr;
+						nearestReceiver = receiver;
+					}
+				}
+			}
+
+			return nearestReceiver;
+		}
+
+		protected void InteractWithNearestReceiver()
+		{
+			var nearestReceiver = GetNearestReceiver();
 
 			if (nearestReceiver != null)
 			{
@@ -132,6 +178,11 @@ namespace AforgeStudios.Signomaly
 		
 		protected abstract void CheckForInteraction();
 #endregion
+
+		private bool IsReceiverInLayerMask(InteractionReceiver receiver, LayerMask layerMask)
+		{
+			return (layerMask.value & (1 << receiver.gameObject.layer)) > 0;
+		}
 
 		protected virtual void OnDrawGizmosSelected()
 		{

@@ -45,8 +45,10 @@ namespace AforgeStudios.Signomaly
 
 		public void ReadInputValues()
 		{
-			_movementDirection.x = LegacyInputManager.Instance.GetAxisRaw("Horizontal");
-			_movementDirection.z = LegacyInputManager.Instance.GetAxisRaw("Vertical");
+			var inputVector = NewInputManager.Instance.ReadValue<Vector2>(KeybindingAction.Movement);
+
+			_movementDirection.x = inputVector.x;
+			_movementDirection.z = inputVector.y;
 			_movementDirection.Normalize();
 		}
 
