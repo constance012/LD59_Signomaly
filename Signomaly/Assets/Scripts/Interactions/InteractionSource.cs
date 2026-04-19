@@ -20,10 +20,25 @@ namespace AforgeStudios.Signomaly
 			Setup();
 		}
 
+		protected virtual void OnEnable()
+		{
+			SubscribeEvents();
+		}
+
+		protected virtual void OnDisable()
+		{
+			UnsubscribeEvents();
+		}
+
 		protected virtual void LateUpdate()
 		{
 			DetectReceivers();
 		}
+
+#region Setup
+		protected virtual void SubscribeEvents() { }
+
+		protected virtual void UnsubscribeEvents() { }
 
 		protected virtual void Setup()
 		{
@@ -32,6 +47,7 @@ namespace AforgeStudios.Signomaly
 			_overlappedColliders = new Collider[_maximumOverlappedColliders];
 			_receiversInRange = new InteractionReceiver[_maximumOverlappedColliders];
 		}
+#endregion
 
 #region Interaction Detection and Handling
 		protected void DetectReceivers()
@@ -94,7 +110,7 @@ namespace AforgeStudios.Signomaly
 			}
 		}
 
-		protected void InteractWithNearestReceiver()
+		protected InteractionReceiver GetNearestReceiver()
 		{
 			InteractionReceiver nearestReceiver = null;
 			float nearestDistanceSqr = float.MaxValue;
@@ -112,6 +128,13 @@ namespace AforgeStudios.Signomaly
 					}
 				}
 			}
+
+			return nearestReceiver;
+		}
+
+		protected void InteractWithNearestReceiver()
+		{
+			var nearestReceiver = GetNearestReceiver();
 
 			if (nearestReceiver != null)
 			{

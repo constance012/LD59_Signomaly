@@ -20,10 +20,30 @@ namespace AforgeStudios.Signomaly
 			SetupComponents();
 		}
 
+		protected virtual void OnEnable()
+		{
+			SubscribeEvents();
+		}
+
+		protected virtual void OnDisable()
+		{
+			UnsubscribeEvents();
+		}
+
+		protected virtual void SubscribeEvents()
+		{
+			_interactionReceiver.OnInteract.AddListener(Interact);
+		}
+
+		protected virtual void UnsubscribeEvents()
+		{
+			_interactionReceiver.OnInteract.RemoveListener(Interact);
+		}
+
 		protected virtual void SetupComponents()
 		{
-			_interactionReceiver.OnInteract.RemoveAllListeners();
-			_interactionReceiver.OnInteract.AddListener(Interact);
+			_objectID = _objectID.Trim().ToUpper();
+			_objectName = _objectName.Trim();
 		}
 
 		public abstract void Interact();
