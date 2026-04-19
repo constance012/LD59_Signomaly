@@ -31,6 +31,8 @@ namespace AforgeStudios.Signomaly
 			_clueDescriptionText.text = clueDescription;
 
 			await _canvasGroupTweenable.SetActive(true);
+			
+			GlobalService.Instance.TogglePlayerInput(false);
 			_isShowingInstructions = true;
 		}
 
@@ -42,6 +44,8 @@ namespace AforgeStudios.Signomaly
 			}
 
 			await _canvasGroupTweenable.SetActive(false);
+			
+			GlobalService.Instance.TogglePlayerInput(true);
 			_isShowingInstructions = false;
 		}
 
