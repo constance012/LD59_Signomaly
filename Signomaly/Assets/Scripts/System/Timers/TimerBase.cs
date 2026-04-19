@@ -18,6 +18,7 @@ namespace AforgeStudios.Signomaly
 		[SerializeField] protected float _debugSubtractSeconds = 10f;
 
 		public TimeSpan Duration => _duration;
+		public string RemainingTimeFormatted => $"{_duration:mm\\:ss}";
 		public bool IsRunning { get; set; }
 		
 		protected TimeSpan _duration;
@@ -54,6 +55,11 @@ namespace AforgeStudios.Signomaly
 			IsRunning = true;
 		}
 
+		public virtual void StopTimer()
+		{
+			IsRunning = false;
+		}
+
 		public virtual void CompleteTimer()
 		{
 			_duration = TimeSpan.Zero;
@@ -80,7 +86,7 @@ namespace AforgeStudios.Signomaly
 
 		protected virtual void UpdateTimerUI()
 		{
-			_timerText.text = $"{_duration:mm\\:ss}";
+			_timerText.text = RemainingTimeFormatted;
 		}
 
 		protected abstract void OnTimerComplete();
