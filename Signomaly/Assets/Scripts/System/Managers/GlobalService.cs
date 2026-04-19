@@ -1,10 +1,16 @@
 using CSTGames.SharedResources;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace AforgeStudios.Signomaly
 {
 	public sealed class GlobalService : PersistentSingleton<GlobalService>
 	{
+		private void Start()
+		{
+			TogglePlayerInput(true);
+		}
+		
 		public void TogglePlayerInput(bool isEnabled)
 		{
 			if (isEnabled)
@@ -16,6 +22,20 @@ namespace AforgeStudios.Signomaly
 			{
 				NewInputManager.Instance.GetInputAction(KeybindingAction.Movement).Disable();
 				NewInputManager.Instance.GetInputAction(KeybindingAction.Interact).Disable();
+			}
+		}
+
+		public void ToggleLockCursor(bool isLocked)
+		{
+			if (isLocked)
+			{
+				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible = false;
+			}
+			else
+			{
+				Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
 			}
 		}
 	}

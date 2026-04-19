@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 9024328102151695739}
   - component: {fileID: 7531940095619819029}
   - component: {fileID: 8575725643956181735}
-  m_Layer: 0
+  - component: {fileID: 2377172387361326758}
+  m_Layer: 3
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,6 +115,23 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2377172387361326758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2332841640657031983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e347f0d5a06386e4abdbf07968bc0426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.PlayerInteractionSource
+  _interactRadius: 1.5
+  _maximumOverlappedColliders: 3
+  _includedLayers:
+    serializedVersion: 2
+    m_Bits: 2816
 --- !u!1 &2698637142197335771
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2448961251105956850}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1514004967605629022}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CameraPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +205,8 @@ GameObject:
   - component: {fileID: 808039425367461250}
   - component: {fileID: 2533428130227768733}
   - component: {fileID: 639936571244264360}
-  m_Layer: 0
+  - component: {fileID: 5235918742842757782}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,8 +273,25 @@ MonoBehaviour:
   rb: {fileID: 2533428130227768733}
   orientation: {fileID: 2448961251105956850}
   moveSpeed: 5
-  groundDrag: 5
+  groundDrag: 10
   playerHeight: 2
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
+--- !u!114 &5235918742842757782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8659108237408139988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f78eae61799f4940837c54f6681e4a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
+  playerCamera: {fileID: 0}
+  objectGrabTransform: {fileID: 0}
+  interactKey: 19
+  dropKey: 31
+  interactRange: 1.5

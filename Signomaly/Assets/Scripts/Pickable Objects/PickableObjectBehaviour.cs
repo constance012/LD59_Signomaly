@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace AforgeStudios.Signomaly
 {
-    public class InteractableObject : MonoBehaviour, IInteractable
+    public class PickableObjectBehaviour : MonoBehaviour, IPickable
     {
         [Header("Interact Settings"), Space]
         [SerializeField] private string interactText;
@@ -23,35 +23,19 @@ namespace AforgeStudios.Signomaly
 
         private void Update()
         {
-            if(CheckPlayer())
+            if (CheckPlayer())
             {
-                if(interactUITransform == null && canShowUI)
+                if (interactUITransform == null)
                 {
                     interactUITransform = Instantiate(interactableObjUIPrefab, transform.position + offset, Quaternion.identity, transform);
-                    InteractableObjUI interactableObjUI = GetComponentInChildren<InteractableObjUI>();
-                    if(interactableObjUI != null)
-                        interactableObjUI.Show(interactKey.ToString(), interactText);
                 }
 
-                if(interactUITransform != null)
-                {
-                    //UI Look At Player
-                    Vector3 reverseDirection = transform.position - playerTransform.position;
-
-                    if(reverseDirection != Vector3.zero)
-                        interactUITransform.rotation = Quaternion.LookRotation(reverseDirection);       
-                }
+                TryShowUIPrompt();
             }
-            else
+            else if (interactUITransform != null)
             {
-                if(interactUITransform != null)
-                    DestroyUI();
+                SetUIPromptActive(false);
             }
-        }
-
-        public void DestroyUI()
-        {
-            Destroy(interactUITransform.gameObject);
         }
 
         private bool CheckPlayer()
@@ -59,7 +43,7 @@ namespace AforgeStudios.Signomaly
             Collider[] colliders = Physics.OverlapSphere(transform.position, detectedRange);
             foreach (Collider collider in colliders)
             {
-                PlayerInteract playerInteract = collider.GetComponentInParent<PlayerInteract>();
+                PlayerPickAndDrop playerInteract = collider.GetComponentInParent<PlayerPickAndDrop>();
                 if (playerInteract != null)
                 {
                     playerTransform = playerInteract.transform;
@@ -73,12 +57,12 @@ namespace AforgeStudios.Signomaly
             return false;
         }
 
-        public string GetInteractText()
+        public string GetPickUpText()
         {
             return interactText;
         }
 
-        public bool GetLockInteract()
+        public bool GetLockPickUpState()
         {
             return lockInteract;
         }
@@ -88,13 +72,13 @@ namespace AforgeStudios.Signomaly
             return transform;
         }
 
-        public void Interact(Transform interactorTransform)
+        public void PickUp(Transform interactorTransform)
         {
             SetCanShowUI(false);
-            DestroyUI();
+            SetUIPromptActive(false);
         }
 
-        public void SetLockInteract(bool lockInteract)
+        public void SetLockPickUpState(bool lockInteract)
         {
             this.lockInteract = lockInteract;
         }
@@ -104,10 +88,28 @@ namespace AforgeStudios.Signomaly
             this.canShowUI = canShowUI;
         }
 
+        private void SetUIPromptActive(bool isActive)
+        {
+            interactUITransform.gameObject.SetActive(isActive);
+        }
+
+        private void TryShowUIPrompt()
+        {
+            if (canShowUI)
+            {
+                InteractableObjUI interactableObjUI = GetComponentInChildren<InteractableObjUI>(true);
+                if (interactableObjUI != null)
+                {
+                    interactableObjUI.Show(interactKey.ToString(), interactText);
+                    SetUIPromptActive(true);
+                }
+            }
+        }
+
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, detectedRange);
         }
-    }    
+    }
 }

@@ -18,7 +18,7 @@ namespace AforgeStudios.Signomaly
         [SerializeField] private float playerHeight;
         [SerializeField] private LayerMask groundLayer;
 
-        private Vector2 _inputValues;
+        private Vector3 _inputValues;
         private bool _isGrounded;
 
         private void Update()
@@ -38,15 +38,13 @@ namespace AforgeStudios.Signomaly
         }
 
         public void ReadInputValues()
-        {
-#if ENABLE_INPUT_SYSTEM
-            _inputValues = NewInputManager.Instance.ReadValue<Vector2>(KeybindingAction.Movement);
-#else
-            _inputValues.x = LegacyInputManager.Instance.GetAxisRaw("Horizontal");
-			_inputValues.y = LegacyInputManager.Instance.GetAxisRaw("Vertical");
+		{
+			var inputVector = NewInputManager.Instance.ReadValue<Vector2>(KeybindingAction.Movement);
+
+			_inputValues.x = inputVector.x;
+			_inputValues.y = inputVector.y;
 			_inputValues.Normalize();
-#endif
-        }
+		}
 
         public void UpdateVelocity()
         {

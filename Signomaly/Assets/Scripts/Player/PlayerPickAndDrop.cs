@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace AforgeStudios.Signomaly
 {
-    public class PlayerInteract : MonoBehaviour
+    public class PlayerPickAndDrop : MonoBehaviour
     {
         [Header("References"), Space]
         [SerializeField] Camera playerCamera;
@@ -26,10 +26,10 @@ namespace AforgeStudios.Signomaly
             //Pick Up Object
             if (NewInputManager.Instance.GetKeyDown(interactKey))
             {
-                IInteractable interactable = GetClosetInteractableObject(GetInteractableList());
-                if (interactable != null && !interactable.GetLockInteract() && CheckObjectBoundsInCamera(interactable.GetTransform().GetComponent<MeshRenderer>()) && grabbingObjTransform == null)
+                IPickable interactable = GetClosetInteractableObject(GetInteractableList());
+                if (interactable != null && !interactable.GetLockPickUpState() && CheckObjectBoundsInCamera(interactable.GetTransform().GetComponent<Collider>()) && grabbingObjTransform == null)
                 {
-                    interactable.Interact(transform);
+                    interactable.PickUp(transform);
                     grabbingObjTransform = interactable.GetTransform();
                     PickUpObj(grabbingObjTransform);
                 }
@@ -40,13 +40,14 @@ namespace AforgeStudios.Signomaly
                 if(grabbingObjTransform != null)
                 {
                     DropDownObj(grabbingObjTransform);
+                    grabbingObjTransform = null;
                 }
             }
         }
 
         private void PickUpObj(Transform pickupObject)
         {
-            if(pickupObject.TryGetComponent<DragableObject>(out DragableObject dragable))
+            if(pickupObject.TryGetComponent<PickableObjectPhysicHandler>(out PickableObjectPhysicHandler dragable))
             {
                 dragable.PickObj(objectGrabTransform);
             }
@@ -54,20 +55,20 @@ namespace AforgeStudios.Signomaly
 
         private void DropDownObj(Transform pickupObject)
         {
-            if(pickupObject.TryGetComponent<DragableObject>(out DragableObject dragable))
+            if(pickupObject.TryGetComponent<PickableObjectPhysicHandler>(out PickableObjectPhysicHandler dragable))
             {
                 dragable.DropObj();
             }
         }
 
-        public List<IInteractable> GetInteractableList()
+        public List<IPickable> GetInteractableList()
         {
-            List<IInteractable> interactableList = new List<IInteractable>();
+            List<IPickable> interactableList = new List<IPickable>();
 
             Collider[] colliders = Physics.OverlapSphere(transform.position, interactRange);
             foreach (Collider collider in colliders)
             {
-                if (collider.TryGetComponent(out IInteractable interactableObj))
+                if (collider.TryGetComponent(out IPickable interactableObj))
                 {
                     interactableList.Add(interactableObj);
                 }
@@ -76,11 +77,11 @@ namespace AforgeStudios.Signomaly
             return interactableList;
         }
 
-        public IInteractable GetClosetInteractableObject(List<IInteractable> interactables)
+        public IPickable GetClosetInteractableObject(List<IPickable> interactables)
         {
-            IInteractable closetInteractableObj = null;
+            IPickable closetInteractableObj = null;
 
-            foreach (IInteractable obj in interactables)
+            foreach (IPickable obj in interactables)
             {
                 if (closetInteractableObj == null)
                     closetInteractableObj = obj;
@@ -96,11 +97,11 @@ namespace AforgeStudios.Signomaly
             return closetInteractableObj;
         }
 
-        public bool CheckObjectBoundsInCamera(MeshRenderer reder)
+        public bool CheckObjectBoundsInCamera(Collider collider)
         {
             Plane[] planes = GeometryUtility.CalculateFrustumPlanes(playerCamera);
 
-            if(GeometryUtility.TestPlanesAABB(planes, reder.bounds))
+            if(GeometryUtility.TestPlanesAABB(planes, collider.bounds))
                 return true;
             
             return false;

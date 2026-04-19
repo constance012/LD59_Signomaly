@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6317025936067245637}
+  - component: {fileID: 5773814153875481131}
   - component: {fileID: 5329649746175976158}
   m_Layer: 9
   m_Name: Key Object
@@ -34,6 +35,33 @@ Transform:
   - {fileID: 4178464661331903911}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &5773814153875481131
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323776027051143011}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &5329649746175976158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +178,8 @@ GameObject:
   - component: {fileID: 3804324125814140919}
   - component: {fileID: 757572246814025712}
   - component: {fileID: 709054558743521441}
+  - component: {fileID: 8144168330201848308}
+  - component: {fileID: 3003743914855862763}
   m_Layer: 9
   m_Name: Physic
   m_TagString: Untagged
@@ -208,3 +238,34 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8144168330201848308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6418925139445979806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783d9717d37cf6545a59f58ab44c8b52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.PickableObjectBehaviour
+  interactText: 
+  lockInteract: 0
+  detectedRange: 1
+  offset: {x: 0, y: 1, z: 0}
+  interactableObjUIPrefab: {fileID: 8342446130099261261, guid: cb6d6b528ca4a6c40a98add88a513ad7, type: 3}
+--- !u!114 &3003743914855862763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6418925139445979806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1189f62b854be88479fcd5637bf815aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.PickableObjectPhysicHandler
+  rb: {fileID: 5773814153875481131}
+  iO: {fileID: 8144168330201848308}

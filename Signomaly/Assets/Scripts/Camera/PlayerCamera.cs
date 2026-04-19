@@ -22,14 +22,18 @@ namespace AforgeStudios.Signomaly
 
         private void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            GlobalService.Instance.ToggleLockCursor(true);
             
             horizontalRotation = startXCamera;
         }
 
         private void Update()
         {
+            if (Cursor.lockState == CursorLockMode.None)
+            {
+                return;
+            }
+
             GetMouseInput();
 
             HandleCameraMovement();
