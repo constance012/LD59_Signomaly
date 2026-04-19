@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace AforgeStudios.Signomaly
 {
-    public class InteractableObject : MonoBehaviour, IInteractable
+    public class PickableObjectBehaviour : MonoBehaviour, IPickable
     {
         [Header("Interact Settings"), Space]
         [SerializeField] private string interactText;
@@ -73,12 +73,12 @@ namespace AforgeStudios.Signomaly
             return false;
         }
 
-        public string GetInteractText()
+        public string GetPickUpText()
         {
             return interactText;
         }
 
-        public bool GetLockInteract()
+        public bool GetLockPickUpState()
         {
             return lockInteract;
         }
@@ -88,13 +88,13 @@ namespace AforgeStudios.Signomaly
             return transform;
         }
 
-        public void Interact(Transform interactorTransform)
+        public void PickUp(Transform interactorTransform)
         {
             SetCanShowUI(false);
             DestroyUI();
         }
 
-        public void SetLockInteract(bool lockInteract)
+        public void SetLockPickUpState(bool lockInteract)
         {
             this.lockInteract = lockInteract;
         }

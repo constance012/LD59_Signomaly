@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace AforgeStudios.Signomaly
 {
-    public class DragableObject : MonoBehaviour
+    public class PickableObjectPhysicHandler : MonoBehaviour
     {
         [Header("References"), Space]
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Collider col;
-        [SerializeField] InteractableObject iO;
+        [SerializeField] PickableObjectBehaviour iO;
 
         private Transform target;
 
