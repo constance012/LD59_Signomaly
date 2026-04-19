@@ -19,6 +19,7 @@ namespace AforgeStudios.Signomaly
 		[SerializeField] private Vector2 _anomalyStateSwitchDelayRangeSeconds = new(10f, 15f);
 
 		public bool IsPuzzleTriggered => _isPuzzleTriggered;
+		public bool IsManualInteractRequired => _autoInteractDelaySeconds <= 0f;
 
 		public event Action OnPuzzleTriggered;
 
@@ -66,7 +67,7 @@ namespace AforgeStudios.Signomaly
 #region Interaction
 		public override void Interact()
 		{
-			if (_isPuzzleTriggered)
+			if (_isPuzzleTriggered || !IsManualInteractRequired)
 			{
 				return;
 			}
@@ -76,13 +77,13 @@ namespace AforgeStudios.Signomaly
 
 		private void CheckForAutoInteract()
 		{
-			if (_interactionReceiver.CanBeInteractedWith)
+			if (_interactionReceiver.CanBeInteractedWith && !IsManualInteractRequired)
 			{
 				_autoInteractTimer -= Time.deltaTime;
 
 				if (_autoInteractTimer <= 0f)
 				{
-					Interact();
+					ShowAndStartTimer();
 				}
 			}
 			else
