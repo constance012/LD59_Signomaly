@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace AforgeStudios.Signomaly
 {
-    public class PlayerInteract : MonoBehaviour
+    public class PlayerPickAndDrop : MonoBehaviour
     {
         [Header("References"), Space]
         [SerializeField] Camera playerCamera;
