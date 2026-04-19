@@ -6,7 +6,6 @@ namespace AforgeStudios.Signomaly
     {
         [Header("References"), Space]
         [SerializeField] private Rigidbody rb;
-        [SerializeField] private Collider col;
         [SerializeField] PickableObjectBehaviour iO;
 
         private Transform target;
@@ -16,7 +15,6 @@ namespace AforgeStudios.Signomaly
             this.target = transform;
             rb.useGravity = false;
             rb.isKinematic = true;
-            col.enabled = false;
         }
 
         public void DropObj()
@@ -24,7 +22,6 @@ namespace AforgeStudios.Signomaly
             this.target = null;
             rb.useGravity = true;
             rb.isKinematic = false;
-            col.enabled = true;
             iO.SetCanShowUI(true);
         }
 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9024328102151695739}
   - component: {fileID: 7531940095619819029}
   - component: {fileID: 8575725643956181735}
+  - component: {fileID: 2377172387361326758}
   m_Layer: 3
   m_Name: Model
   m_TagString: Untagged
@@ -114,6 +115,23 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2377172387361326758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2332841640657031983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e347f0d5a06386e4abdbf07968bc0426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.PlayerInteractionSource
+  _interactRadius: 1.5
+  _maximumOverlappedColliders: 3
+  _includedLayers:
+    serializedVersion: 2
+    m_Bits: 2816
 --- !u!1 &2698637142197335771
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +273,7 @@ MonoBehaviour:
   rb: {fileID: 2533428130227768733}
   orientation: {fileID: 2448961251105956850}
   moveSpeed: 5
-  groundDrag: 5
+  groundDrag: 10
   playerHeight: 2
   groundLayer:
     serializedVersion: 2
