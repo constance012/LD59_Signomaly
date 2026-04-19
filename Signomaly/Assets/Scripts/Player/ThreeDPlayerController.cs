@@ -40,7 +40,6 @@ namespace AforgeStudios.Signomaly
         public void ReadInputValues()
 		{
 			var inputVector = NewInputManager.Instance.ReadValue<Vector2>(KeybindingAction.Movement);
-			Debug.Log($"Input Vector: {inputVector}");
 
 			_inputValues.x = inputVector.x;
 			_inputValues.y = inputVector.y;

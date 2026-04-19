@@ -27,7 +27,7 @@ namespace AforgeStudios.Signomaly
             if (NewInputManager.Instance.GetKeyDown(interactKey))
             {
                 IPickable interactable = GetClosetInteractableObject(GetInteractableList());
-                if (interactable != null && !interactable.GetLockPickUpState() && CheckObjectBoundsInCamera(interactable.GetTransform().GetComponent<MeshRenderer>()) && grabbingObjTransform == null)
+                if (interactable != null && !interactable.GetLockPickUpState() && CheckObjectBoundsInCamera(interactable.GetTransform().GetComponent<Collider>()) && grabbingObjTransform == null)
                 {
                     interactable.PickUp(transform);
                     grabbingObjTransform = interactable.GetTransform();
@@ -40,6 +40,7 @@ namespace AforgeStudios.Signomaly
                 if(grabbingObjTransform != null)
                 {
                     DropDownObj(grabbingObjTransform);
+                    grabbingObjTransform = null;
                 }
             }
         }
@@ -96,11 +97,11 @@ namespace AforgeStudios.Signomaly
             return closetInteractableObj;
         }
 
-        public bool CheckObjectBoundsInCamera(MeshRenderer reder)
+        public bool CheckObjectBoundsInCamera(Collider collider)
         {
             Plane[] planes = GeometryUtility.CalculateFrustumPlanes(playerCamera);
 
-            if(GeometryUtility.TestPlanesAABB(planes, reder.bounds))
+            if(GeometryUtility.TestPlanesAABB(planes, collider.bounds))
                 return true;
             
             return false;
