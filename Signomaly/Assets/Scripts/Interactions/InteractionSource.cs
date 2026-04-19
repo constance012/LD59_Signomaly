@@ -78,7 +78,9 @@ namespace AforgeStudios.Signomaly
 				_overlappedColliders[i] = null;
 			}
 		}
+#endregion
 
+#region Receiver Interactions
 		protected void FetchNewReceivers()
 		{
 			for (int i = 0; i < _overlappedColliders.Length; i++)
@@ -131,6 +133,28 @@ namespace AforgeStudios.Signomaly
 			return nearestReceiver;
 		}
 
+		protected InteractionReceiver GetNearestReceiverWithLayerMask(LayerMask layerMask)
+		{
+			InteractionReceiver nearestReceiver = null;
+			float nearestDistanceSqr = float.MaxValue;
+
+			foreach (var receiver in _receiversInRange)
+			{
+				if (receiver != null && receiver.CanBeInteractedWith && IsReceiverInLayerMask(receiver, layerMask))
+				{
+					float distanceSqr = (receiver.transform.position - transform.position).sqrMagnitude;
+
+					if (distanceSqr < nearestDistanceSqr)
+					{
+						nearestDistanceSqr = distanceSqr;
+						nearestReceiver = receiver;
+					}
+				}
+			}
+
+			return nearestReceiver;
+		}
+
 		protected void InteractWithNearestReceiver()
 		{
 			var nearestReceiver = GetNearestReceiver();
@@ -154,6 +178,11 @@ namespace AforgeStudios.Signomaly
 		
 		protected abstract void CheckForInteraction();
 #endregion
+
+		private bool IsReceiverInLayerMask(InteractionReceiver receiver, LayerMask layerMask)
+		{
+			return (layerMask.value & (1 << receiver.gameObject.layer)) > 0;
+		}
 
 		protected virtual void OnDrawGizmosSelected()
 		{
