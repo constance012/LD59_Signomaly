@@ -6,23 +6,30 @@ namespace AforgeStudios.Signomaly
     {
         [Header("References"), Space]
         [SerializeField] private Rigidbody rb;
-        [SerializeField] PickableObjectBehaviour iO;
+        [SerializeField] private Collider col;
+        [SerializeField] PickableObjectBehaviour pickableObjBehaviour;
+        [SerializeField] PlayerPickAndDrop playerPickAndDrop;
 
         private Transform target;
+        private bool isPicked;
 
         public void PickObj(Transform transform)
         {
             this.target = transform;
             rb.useGravity = false;
-            rb.isKinematic = true;
+            col.isTrigger = true;
+            // rb.isKinematic = true;
+            isPicked = true;
         }
 
         public void DropObj()
         {
             this.target = null;
             rb.useGravity = true;
-            rb.isKinematic = false;
-            iO.SetCanShowUI(true);
+            col.isTrigger = false;
+            // rb.isKinematic = false;
+            isPicked = false;
+            pickableObjBehaviour.SetCanShowUI(true);
         }
 
         private void FixedUpdate()
@@ -30,6 +37,14 @@ namespace AforgeStudios.Signomaly
             if(target != null)
             {
                 rb.MovePosition(target.position);
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(isPicked && other.gameObject.layer == LayerMask.NameToLayer("Environment"))
+            {
+                playerPickAndDrop.DropDownObj(transform);
             }
         }
     }
