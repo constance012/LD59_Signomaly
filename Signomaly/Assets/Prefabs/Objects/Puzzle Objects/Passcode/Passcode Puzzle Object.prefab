@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5499891215494244891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3308850819501134901}
+  m_Layer: 8
+  m_Name: Camera Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3308850819501134901
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5499891215494244891}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -0.476, y: 0.093, z: 1.81}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2098132838113665003}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &1138198705962926211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -730,6 +761,9 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5033595281086654241, guid: 4f596d54c054ec54eaa9355830a22d29, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 3308850819501134901}
+    - targetCorrespondingSourceObject: {fileID: 5033595281086654241, guid: 4f596d54c054ec54eaa9355830a22d29, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 3682883718865111814}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1253198637360759906, guid: 4f596d54c054ec54eaa9355830a22d29, type: 3}
@@ -766,6 +800,7 @@ MonoBehaviour:
   _shouldHitTriggers: 0
   _puzzleObject: {fileID: 6584082661293841226}
   _passcodePanelUI: {fileID: 7648955387928184587}
+  _cameraFocusPoint: {fileID: 3308850819501134901}
   _requiredPasscode: 59417
   _instructionNotePrefab: {fileID: 8895439318030361888, guid: e470269d831ee9c4f8c84b9b393b09c8, type: 3}
 --- !u!114 &6584082661293841226 stripped
