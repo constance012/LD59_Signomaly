@@ -77,8 +77,10 @@ namespace AforgeStudios.Signomaly
             {
                 rb.linearDamping = groundDrag;
             }
-
-            rb.linearDamping = 0;
+            else
+            {
+                rb.linearDamping = 0;
+            }
         }
     }
 }
