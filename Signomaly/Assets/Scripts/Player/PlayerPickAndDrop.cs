@@ -43,7 +43,6 @@ namespace AforgeStudios.Signomaly
                 if(grabbingObjTransform != null)
                 {
                     DropDownObj(grabbingObjTransform);
-                    grabbingObjTransform = null;
                 }
             }
         }
@@ -56,12 +55,13 @@ namespace AforgeStudios.Signomaly
             }
         }
 
-        private void DropDownObj(Transform pickupObject)
+        public void DropDownObj(Transform pickupObject)
         {
             if(pickupObject.TryGetComponent<PickableObjectPhysicHandler>(out PickableObjectPhysicHandler dragable))
             {
                 dragable.DropObj();
             }
+            grabbingObjTransform = null;
         }
 
         public List<IPickable> GetInteractableList()
