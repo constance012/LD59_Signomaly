@@ -1,6 +1,3 @@
-using System;
-using CSTGames.SharedResources;
-using Mono.Cecil;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -48,6 +45,22 @@ namespace AforgeStudios.Signomaly
             if(GeometryUtility.TestPlanesAABB(planes, collider.bounds))
                 return true;
             
+            return false;
+        }
+
+        public static bool IsPointedAtByMouseCursor(InteractionReceiver currentReceiver, float interactRadius, out RaycastHit hitInfo)
+        {
+            var camera = Camera.main;
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hitInfo, interactRadius))
+            {
+                if (hitInfo.collider.TryGetComponent(out InteractionReceiver receiver) && receiver == currentReceiver)
+                {
+                    return true;
+                }
+            }
+
             return false;
         }
 

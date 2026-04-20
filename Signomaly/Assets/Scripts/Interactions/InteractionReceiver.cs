@@ -23,5 +23,10 @@ namespace AforgeStudios.Signomaly
 		{
 			return PlayerCamera.IsInsideCameraFrustum(_ownCollider);
 		}
+
+		public bool IsPointedAtByMouseCursor(float interactRadius)
+		{
+			return PlayerCamera.IsPointedAtByMouseCursor(this, interactRadius, out _);
+		}
 	}
 }

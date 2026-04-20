@@ -115,7 +115,7 @@ namespace AforgeStudios.Signomaly
 
 			foreach (var receiver in _receiversInRange)
 			{
-				if (receiver == null || !receiver.AllowsInteraction || !receiver.IsVisibleByCamera())
+				if (receiver == null || !receiver.AllowsInteraction)
 				{
 					continue;
 				}
@@ -139,7 +139,7 @@ namespace AforgeStudios.Signomaly
 
 			foreach (var receiver in _receiversInRange)
 			{
-				if (receiver == null || !receiver.AllowsInteraction || !receiver.IsVisibleByCamera() || !IsReceiverInLayerMask(receiver, layerMask))
+				if (receiver == null || !receiver.AllowsInteraction || !IsReceiverInLayerMask(receiver, layerMask))
 				{
 					continue;
 				}

@@ -9,7 +9,7 @@ namespace AforgeStudios.Signomaly
 		[Header("References"), Space]
 		[SerializeField] private PuzzleObjectBehaviour _puzzleObject;
 		[SerializeField] private PasscodePanelUI _passcodePanelUI;
-		
+
 		[Header("Required Object Settings"), Space]
 		[SerializeField] private string _requiredPasscode;
 
@@ -20,11 +20,14 @@ namespace AforgeStudios.Signomaly
 
 		public event Action OnPuzzleCompleted;
 
+		private InteractionReceiver _ownReceiver;
+
 		protected override void Setup()
 		{
 			base.Setup();
 
 			_requiredPasscode = _requiredPasscode.Trim().ToUpper();
+			_ownReceiver = GetComponentInChildren<InteractionReceiver>();
 		}
 
 		protected override void CheckForInteraction()
@@ -34,7 +37,8 @@ namespace AforgeStudios.Signomaly
 				return;
 			}
 
-			if (LegacyInputManager.Instance.GetKeyDown(KeybindingAction.Interact))
+			if (NewInputManager.Instance.WasPressedThisFrame(KeybindingAction.Interact) &&
+				PlayerCamera.IsPointedAtByMouseCursor(_ownReceiver, _interactRadius, out _))
 			{
 				OpenPasscodePanelUI();
 			}

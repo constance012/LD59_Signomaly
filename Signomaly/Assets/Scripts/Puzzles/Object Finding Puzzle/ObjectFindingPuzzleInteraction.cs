@@ -23,9 +23,12 @@ namespace AforgeStudios.Signomaly
 
 		private const string WRONG_OBJECT_SUBMISSION_MESSAGE = "This object is incorrect!";
 
+		private InteractionReceiver _ownReceiver;
+
 		protected override void Setup()
 		{
 			base.Setup();
+			_ownReceiver = GetComponentInChildren<InteractionReceiver>();
 
 			_requiredObjectID = _requiredObjectID.Trim().ToUpper();
 			_clueTitle = _clueTitle.Trim();
@@ -39,7 +42,8 @@ namespace AforgeStudios.Signomaly
 				return;
 			}
 
-			if (LegacyInputManager.Instance.GetKeyDown(KeybindingAction.Interact))
+			if (NewInputManager.Instance.WasPressedThisFrame(KeybindingAction.Interact) &&
+				PlayerCamera.IsPointedAtByMouseCursor(_ownReceiver, _interactRadius, out _))
 			{
 				TrySubmitRequiredObject();
 			}
@@ -49,7 +53,7 @@ namespace AforgeStudios.Signomaly
 		{
 			var nearestReceiver = GetNearestReceiverWithLayerMask(_keyObjectLayerMask);
 
-			if (nearestReceiver == null)
+			if (nearestReceiver == null || nearestReceiver.IsPointedAtByMouseCursor(_interactRadius))
 			{
 				ShowInstructions();
 				return false;

@@ -1,4 +1,5 @@
 using CSTGames.SharedResources;
+using UnityEngine;
 
 namespace AforgeStudios.Signomaly
 {
@@ -8,7 +9,20 @@ namespace AforgeStudios.Signomaly
 		{
 			if (NewInputManager.Instance.WasPressedThisFrame(KeybindingAction.Interact))
 			{
-				InteractWithNearestReceiver();
+				InteractWithReceiverAtMousePosition();
+			}
+		}
+
+		private void InteractWithReceiverAtMousePosition()
+		{
+			var nearestReceiver = GetNearestReceiver();
+
+			if (PlayerCamera.IsPointedAtByMouseCursor(nearestReceiver, _interactRadius, out RaycastHit hitInfo))
+			{
+				if (hitInfo.collider.TryGetComponent(out InteractionReceiver receiver) && receiver.AllowsInteraction)
+				{
+					receiver.Interact();
+				}
 			}
 		}
 	}
