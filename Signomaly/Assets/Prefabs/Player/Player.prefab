@@ -272,12 +272,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.ThreeDPlayerController
   rb: {fileID: 2533428130227768733}
   orientation: {fileID: 2448961251105956850}
-  moveSpeed: 5
-  groundDrag: 10
-  playerHeight: 2
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  stats: {fileID: 11400000, guid: 3b1c2fea403c9664bb7ec63213a685e2, type: 2}
+  acceleration: 40
+  deceleration: 42
 --- !u!114 &5235918742842757782
 MonoBehaviour:
   m_ObjectHideFlags: 0
