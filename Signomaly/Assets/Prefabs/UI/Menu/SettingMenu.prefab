@@ -3711,6 +3711,7 @@ GameObject:
   - component: {fileID: 277595022725696062}
   - component: {fileID: 5973182224682918654}
   - component: {fileID: 6545682434224485536}
+  - component: {fileID: 859245420575028362}
   m_Layer: 5
   m_Name: BackScreenButton
   m_TagString: Untagged
@@ -3832,6 +3833,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &859245420575028362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6703278329724229481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5a790da1e78904aabfa88ff4b0ba53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonHover
+  textMesh: {fileID: 9126231043260309470}
+  hoverColor: {r: 0.9607843, g: 0.6509804, b: 0.13725491, a: 1}
 --- !u!1 &6754968271202315909
 GameObject:
   m_ObjectHideFlags: 0
