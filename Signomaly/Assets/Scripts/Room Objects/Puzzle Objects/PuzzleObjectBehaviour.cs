@@ -76,18 +76,19 @@ namespace AforgeStudios.Signomaly
 
 		private void CheckForAutoInteract()
 		{
-			if (_interactionReceiver.CanBeInteractedWith && !IsManualInteractRequired)
-			{
-				_autoInteractTimer -= Time.deltaTime;
-
-				if (_autoInteractTimer <= 0f)
-				{
-					ShowAndStartTimer();
-				}
-			}
-			else
+			if (!_interactionReceiver.AllowsInteraction ||
+				!_interactionReceiver.IsVisibleByCamera() ||
+				IsManualInteractRequired)
 			{
 				_autoInteractTimer = _autoInteractDelaySeconds;
+				return;
+			}
+
+			_autoInteractTimer -= Time.deltaTime;
+
+			if (_autoInteractTimer <= 0f)
+			{
+				ShowAndStartTimer();
 			}
 		}
 
