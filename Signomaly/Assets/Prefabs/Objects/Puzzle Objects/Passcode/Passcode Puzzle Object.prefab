@@ -872,6 +872,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4607790392317486713}
     - target: {fileID: 8001633325045733490, guid: 4f596d54c054ec54eaa9355830a22d29, type: 3}
+      propertyPath: _anomalyStateData.LocalPositionOffset.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001633325045733490, guid: 4f596d54c054ec54eaa9355830a22d29, type: 3}
       propertyPath: _normalStateData.OverrideMaterials.Array.size
       value: 2
       objectReference: {fileID: 0}
