@@ -82,6 +82,11 @@ namespace AforgeStudios.Signomaly
                 timer += timePerCharacter;
                 characterIndex++;
 
+                if (characterIndex % 2 == 0)
+                {
+                    AudioManager.Instance.PlayWithRandomPitch("Dialogue Typing", .3f, 1f);
+                }
+
                 string text = textToWrite.Substring(0, characterIndex);
 
                 if (isInvisibleCharacter)
