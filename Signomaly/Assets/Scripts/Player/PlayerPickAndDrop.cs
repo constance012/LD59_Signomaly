@@ -27,7 +27,10 @@ namespace AforgeStudios.Signomaly
             if (NewInputManager.Instance.GetKeyDown(interactKey))
             {
                 IPickable interactable = GetClosetInteractableObject(GetInteractableList());
-                if (interactable != null && !interactable.GetLockPickUpState() && CheckObjectBoundsInCamera(interactable.GetTransform().GetComponent<Collider>()) && grabbingObjTransform == null)
+                
+                if (interactable != null && !interactable.GetLockPickUpState() && 
+                    PlayerCamera.IsInsideCameraFrustum(interactable.GetTransform().GetComponent<Collider>()) &&
+                    grabbingObjTransform == null)
                 {
                     interactable.PickUp(transform);
                     grabbingObjTransform = interactable.GetTransform();
@@ -95,16 +98,6 @@ namespace AforgeStudios.Signomaly
             }
 
             return closetInteractableObj;
-        }
-
-        public bool CheckObjectBoundsInCamera(Collider collider)
-        {
-            Plane[] planes = GeometryUtility.CalculateFrustumPlanes(playerCamera);
-
-            if(GeometryUtility.TestPlanesAABB(planes, collider.bounds))
-                return true;
-            
-            return false;
         }
 
         public Key GetInteractKey()

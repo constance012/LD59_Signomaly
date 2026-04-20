@@ -8,6 +8,7 @@ namespace AforgeStudios.Signomaly
 		[SerializeField] protected float _interactRadius = 2f;
 		[SerializeField] protected int _maximumOverlappedColliders = 3;
 		[SerializeField] protected LayerMask _includedLayers;
+		[SerializeField] protected bool _shouldHitTriggers;
 
 		public bool AreReceiversInRange { get; protected set; }
 
@@ -53,7 +54,7 @@ namespace AforgeStudios.Signomaly
 		protected void DetectReceivers()
 		{
 			ClearCollidersArray();
-			int newReceiversCount = Physics.OverlapSphereNonAlloc(transform.position, _interactRadius, _overlappedColliders, _includedLayers);
+			int newReceiversCount = Physics.OverlapSphereNonAlloc(transform.position, _interactRadius, _overlappedColliders, _includedLayers, _shouldHitTriggers ? QueryTriggerInteraction.Collide : QueryTriggerInteraction.Ignore);
 
 			AreReceiversInRange = newReceiversCount > 0;
 
@@ -89,11 +90,8 @@ namespace AforgeStudios.Signomaly
 
 				if (collider != null && collider.TryGetComponent(out InteractionReceiver newReceiver))
 				{
-					newReceiver.CanBeInteractedWith = true;
-					
+					newReceiver.AllowsInteraction = true;
 					_receiversInRange[i] = newReceiver;
-					
-					continue;
 				}
 			}
 		}
@@ -105,7 +103,7 @@ namespace AforgeStudios.Signomaly
 				var oldReceiver = _receiversInRange[i];
 				if (oldReceiver != null)
 				{
-					oldReceiver.CanBeInteractedWith = false;
+					oldReceiver.AllowsInteraction = false;
 					_receiversInRange[i] = null;
 				}
 			}
@@ -118,15 +116,17 @@ namespace AforgeStudios.Signomaly
 
 			foreach (var receiver in _receiversInRange)
 			{
-				if (receiver != null && receiver.CanBeInteractedWith)
+				if (receiver == null || !receiver.AllowsInteraction)
 				{
-					float distanceSqr = (receiver.transform.position - transform.position).sqrMagnitude;
+					continue;
+				}
 
-					if (distanceSqr < nearestDistanceSqr)
-					{
-						nearestDistanceSqr = distanceSqr;
-						nearestReceiver = receiver;
-					}
+				float distanceSqr = (receiver.transform.position - transform.position).sqrMagnitude;
+
+				if (distanceSqr < nearestDistanceSqr)
+				{
+					nearestDistanceSqr = distanceSqr;
+					nearestReceiver = receiver;
 				}
 			}
 
@@ -140,15 +140,17 @@ namespace AforgeStudios.Signomaly
 
 			foreach (var receiver in _receiversInRange)
 			{
-				if (receiver != null && receiver.CanBeInteractedWith && IsReceiverInLayerMask(receiver, layerMask))
+				if (receiver == null || !receiver.AllowsInteraction || !IsReceiverInLayerMask(receiver, layerMask))
 				{
-					float distanceSqr = (receiver.transform.position - transform.position).sqrMagnitude;
+					continue;
+				}
 
-					if (distanceSqr < nearestDistanceSqr)
-					{
-						nearestDistanceSqr = distanceSqr;
-						nearestReceiver = receiver;
-					}
+				float distanceSqr = (receiver.transform.position - transform.position).sqrMagnitude;
+
+				if (distanceSqr < nearestDistanceSqr)
+				{
+					nearestDistanceSqr = distanceSqr;
+					nearestReceiver = receiver;
 				}
 			}
 
@@ -169,10 +171,12 @@ namespace AforgeStudios.Signomaly
 		{
 			foreach (var receiver in _receiversInRange)
 			{
-				if (receiver != null && receiver.CanBeInteractedWith)
+				if (receiver == null || !receiver.AllowsInteraction || !receiver.IsVisibleByCamera())
 				{
-					receiver.Interact();
+					continue;
 				}
+
+				receiver.Interact();
 			}
 		}
 		

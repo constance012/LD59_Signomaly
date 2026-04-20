@@ -23,9 +23,12 @@ namespace AforgeStudios.Signomaly
 
 		private const string WRONG_OBJECT_SUBMISSION_MESSAGE = "This object is incorrect!";
 
+		private InteractionReceiver _ownReceiver;
+
 		protected override void Setup()
 		{
 			base.Setup();
+			_ownReceiver = GetComponentInChildren<InteractionReceiver>();
 
 			_requiredObjectID = _requiredObjectID.Trim().ToUpper();
 			_clueTitle = _clueTitle.Trim();
@@ -34,30 +37,31 @@ namespace AforgeStudios.Signomaly
 
 		protected override void CheckForInteraction()
 		{
-			if (!_puzzleObject.IsPuzzleTriggered || IsPuzzleCompleted)
+			if (!_puzzleObject.IsThisPuzzleStarted() || IsPuzzleCompleted)
 			{
 				return;
 			}
 
-			if (LegacyInputManager.Instance.GetKeyDown(KeybindingAction.Interact))
+			if (NewInputManager.Instance.WasPressedThisFrame(KeybindingAction.Interact) &&
+				PlayerCamera.IsPointedAtByMouseCursor(_ownReceiver, _interactRadius, out _))
 			{
-				TrySubmitKeyObject();
+				TrySubmitRequiredObject();
 			}
 		}
 
-		private bool TrySubmitKeyObject()
+		private bool TrySubmitRequiredObject()
 		{
 			var nearestReceiver = GetNearestReceiverWithLayerMask(_keyObjectLayerMask);
 
-			if (nearestReceiver == null)
+			if (nearestReceiver == null || nearestReceiver.IsPointedAtByMouseCursor(_interactRadius))
 			{
 				ShowInstructions();
 				return false;
 			}
 
-			KeyObject keyObject = nearestReceiver.GetComponentInParent<KeyObject>();
+			FindingRequiredObject requiredObject = nearestReceiver.GetComponentInParent<FindingRequiredObject>();
 
-			if (keyObject != null && keyObject.ObjectID == _requiredObjectID)
+			if (requiredObject != null && requiredObject.ObjectID == _requiredObjectID)
 			{
 				SolvePuzzle();
 				return true;

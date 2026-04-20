@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9058424308211255182}
-  - component: {fileID: 77665946966695523}
+  - component: {fileID: 8571879092582579998}
   - component: {fileID: 4154469712503940503}
   - component: {fileID: 2419271942132216033}
   - component: {fileID: 42283665000509432}
@@ -112,8 +112,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6894445660422251628}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &77665946966695523
-SphereCollider:
+--- !u!65 &8571879092582579998
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -131,7 +131,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4154469712503940503
 MonoBehaviour:
@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e924c1abd6b9a604b9ad7b1fce9c6597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.InteractionReceiver
+  _ownCollider: {fileID: 8571879092582579998}
   OnInteract:
     m_PersistentCalls:
       m_Calls: []

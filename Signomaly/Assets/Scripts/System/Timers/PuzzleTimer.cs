@@ -7,7 +7,7 @@ namespace AforgeStudios.Signomaly
 	{
 		protected override void OnTimerComplete()
 		{
-			Debug.Log("Game over! Player failed to solve the puzzle in time.");
+			GameStateManager.Instance.GameOver();
 		}
 	}
 }

@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e924c1abd6b9a604b9ad7b1fce9c6597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.InteractionReceiver
+  _ownCollider: {fileID: 3792014933089328675}
   OnInteract:
     m_PersistentCalls:
       m_Calls: []

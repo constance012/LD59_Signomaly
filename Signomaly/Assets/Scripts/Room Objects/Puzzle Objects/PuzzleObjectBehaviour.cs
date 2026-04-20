@@ -18,7 +18,8 @@ namespace AforgeStudios.Signomaly
 		[SerializeField] private float _anomalyStateDurationSeconds = 7f;
 		[SerializeField] private Vector2 _anomalyStateSwitchDelayRangeSeconds = new(10f, 15f);
 
-		public bool IsPuzzleTriggered => _isPuzzleTriggered;
+		public static bool IsAnyPuzzleTriggered { get; set; }
+		public bool IsManualInteractRequired => _autoInteractDelaySeconds <= 0f;
 
 		public event Action OnPuzzleTriggered;
 
@@ -26,11 +27,10 @@ namespace AforgeStudios.Signomaly
 		private float _anomalyStateSwitchTimer;
 		private float _anomalyStateElapsedTime;
 		private float _autoInteractTimer;
-		private bool _isPuzzleTriggered;
 
 		private void Update()
 		{
-			if (_isPuzzleTriggered)
+			if (IsThisPuzzleCompleted() || IsThisPuzzleStarted())
 			{
 				return;
 			}
@@ -66,7 +66,7 @@ namespace AforgeStudios.Signomaly
 #region Interaction
 		public override void Interact()
 		{
-			if (_isPuzzleTriggered)
+			if (_currentPuzzle.IsPuzzleCompleted || IsAnyPuzzleTriggered || !IsManualInteractRequired)
 			{
 				return;
 			}
@@ -76,18 +76,19 @@ namespace AforgeStudios.Signomaly
 
 		private void CheckForAutoInteract()
 		{
-			if (_interactionReceiver.CanBeInteractedWith)
-			{
-				_autoInteractTimer -= Time.deltaTime;
-
-				if (_autoInteractTimer <= 0f)
-				{
-					Interact();
-				}
-			}
-			else
+			if (!_interactionReceiver.AllowsInteraction ||
+				!_interactionReceiver.IsVisibleByCamera() ||
+				IsManualInteractRequired)
 			{
 				_autoInteractTimer = _autoInteractDelaySeconds;
+				return;
+			}
+
+			_autoInteractTimer -= Time.deltaTime;
+
+			if (_autoInteractTimer <= 0f)
+			{
+				ShowAndStartTimer();
 			}
 		}
 
@@ -100,7 +101,8 @@ namespace AforgeStudios.Signomaly
 
 			_currentPuzzle.ShowInstructions();
 
-			_isPuzzleTriggered = true;
+			IsAnyPuzzleTriggered = true;
+
 			OnPuzzleTriggered?.Invoke();
 		}
 #endregion
@@ -143,12 +145,26 @@ namespace AforgeStudios.Signomaly
 #endregion
 
 #region Puzzle Handling
+		public bool IsThisPuzzleStarted()
+		{
+			return IsAnyPuzzleTriggered && _timer.IsRunning;
+		}
+
+		public bool IsThisPuzzleCompleted()
+		{
+			return _currentPuzzle != null && _currentPuzzle.IsPuzzleCompleted;
+		}
+
 		private void IPuzzle_OnPuzzleCompleted()
 		{
 			_visualHandler.SwitchState(PuzzleObjectVisualHandler.VisualState.Normal);
 
 			_timer.StopTimer();
 			_timer.gameObject.SetActive(false);
+
+			IsAnyPuzzleTriggered = false;
+
+			GameStateManager.Instance.IncrementPuzzleCompletion();
 
 			Debug.Log($"Puzzle solved: {gameObject.name}, remaining time: {_timer.RemainingTimeFormatted}", this);
 		}

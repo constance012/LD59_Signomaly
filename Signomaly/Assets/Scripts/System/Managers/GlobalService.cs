@@ -5,12 +5,7 @@ using UnityEngine.InputSystem;
 namespace AforgeStudios.Signomaly
 {
 	public sealed class GlobalService : PersistentSingleton<GlobalService>
-	{
-		private void Start()
-		{
-			TogglePlayerInput(true);
-		}
-		
+	{	
 		public void TogglePlayerInput(bool isEnabled)
 		{
 			if (isEnabled)
