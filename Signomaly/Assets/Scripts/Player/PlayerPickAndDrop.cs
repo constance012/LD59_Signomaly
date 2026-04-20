@@ -32,6 +32,7 @@ namespace AforgeStudios.Signomaly
                     PlayerCamera.IsInsideCameraFrustum(interactable.GetTransform().GetComponent<Collider>()) &&
                     grabbingObjTransform == null)
                 {
+                    AudioManager.Instance.Play("Pickup Object");
                     interactable.PickUp(transform);
                     grabbingObjTransform = interactable.GetTransform();
                     PickUpObj(grabbingObjTransform);
@@ -42,6 +43,7 @@ namespace AforgeStudios.Signomaly
             {
                 if(grabbingObjTransform != null)
                 {
+                    AudioManager.Instance.Play("Drop Object");
                     DropDownObj(grabbingObjTransform);
                 }
             }

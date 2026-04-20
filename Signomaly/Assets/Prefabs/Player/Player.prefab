@@ -217,6 +217,7 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: 3b1c2fea403c9664bb7ec63213a685e2, type: 2}
   acceleration: 40
   deceleration: 42
+  footstepInterval: 1.6
 --- !u!114 &5235918742842757782
 MonoBehaviour:
   m_ObjectHideFlags: 0

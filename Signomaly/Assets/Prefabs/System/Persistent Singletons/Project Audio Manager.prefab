@@ -66,6 +66,76 @@ MonoBehaviour:
     playOnAwake: 0
     mixerGroup: {fileID: 0}
     audioSource: {fileID: 0}
+  - entryName: Footsteps
+    audioCategory: 0
+    clips:
+    - {fileID: 8300000, guid: fd9dd90fc57ab4a4aa359dd64815ca6e, type: 3}
+    volume: 0.8
+    pitch: 1
+    isLooped: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    audioSource: {fileID: 0}
+  - entryName: Puzzle Completed
+    audioCategory: 0
+    clips:
+    - {fileID: 8300000, guid: 93cd821494073e9499c76ac92c1301f6, type: 3}
+    volume: 0.8
+    pitch: 1
+    isLooped: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    audioSource: {fileID: 0}
+  - entryName: Timer Alert
+    audioCategory: 0
+    clips:
+    - {fileID: 8300000, guid: 71f199d3c2d7ac4448854ffecbf48dbb, type: 3}
+    volume: 0.8
+    pitch: 1
+    isLooped: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    audioSource: {fileID: 0}
+  - entryName: Drop Object
+    audioCategory: 0
+    clips:
+    - {fileID: 8300000, guid: 8cadc1ba8cb538b498245a51206c53fc, type: 3}
+    volume: 0.539
+    pitch: 1
+    isLooped: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    audioSource: {fileID: 0}
+  - entryName: Pickup Object
+    audioCategory: 0
+    clips:
+    - {fileID: 8300000, guid: 320a91aa5e155934e83034b6882fcf49, type: 3}
+    volume: 0.8
+    pitch: 1
+    isLooped: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    audioSource: {fileID: 0}
+  - entryName: Read Clue
+    audioCategory: 0
+    clips:
+    - {fileID: 8300000, guid: 5c0cb20f32686c748904092791100475, type: 3}
+    volume: 0.8
+    pitch: 1
+    isLooped: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    audioSource: {fileID: 0}
+  - entryName: Menu Music
+    audioCategory: 0
+    clips:
+    - {fileID: 8300000, guid: 10a5490b318a69744973a83e4b69b3cf, type: 3}
+    volume: 0.8
+    pitch: 1
+    isLooped: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    audioSource: {fileID: 0}
 --- !u!1 &1334499020120075185
 GameObject:
   m_ObjectHideFlags: 0
