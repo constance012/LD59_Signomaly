@@ -27,7 +27,7 @@ namespace AforgeStudios.Signomaly
 
 		protected override void OnTimerComplete()
 		{
-			Debug.Log("Level ends!");
+			GameStateManager.Instance.GameOver();
 		}
 
 		private void MakeSingleton()

@@ -164,6 +164,8 @@ namespace AforgeStudios.Signomaly
 
 			IsAnyPuzzleTriggered = false;
 
+			GameStateManager.Instance.IncrementPuzzleCompletion();
+
 			Debug.Log($"Puzzle solved: {gameObject.name}, remaining time: {_timer.RemainingTimeFormatted}", this);
 		}
 #endregion
