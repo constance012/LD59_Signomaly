@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -20,11 +21,18 @@ namespace AforgeStudios.Signomaly
         [SerializeField] private AudioMixer mixer;
 
         private Resolution[] resolutions;
+        private bool isVideoPanel;
 
         private void Start()
         {
             GameManager.Instance.OnPauseGame += GameManager_SettingMenu_OnPauseGame;
             GameManager.Instance.OnSettingGame += GameManager_SettingMenu_OnSettingGame;
+            GameManager.Instance.OnOpenStartGame += GameManager_SettingMenu_OnStartGame;
+        }
+
+        private void GameManager_SettingMenu_OnStartGame()
+        {
+            containerGameObj.SetActive(false);
         }
 
         private void GameManager_SettingMenu_OnPauseGame()
@@ -71,7 +79,10 @@ namespace AforgeStudios.Signomaly
 
         public void BackButtonClick()
         {
-            GameManager.Instance.PauseGame();
+            if(GameManager.Instance.IsStartGame)
+                GameManager.Instance.PauseGame();
+            else
+                GameManager.Instance.OpenStartGame();
         }
 
         public void SetMasterVolume(float amount)

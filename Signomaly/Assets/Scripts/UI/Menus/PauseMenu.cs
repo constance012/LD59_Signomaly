@@ -9,12 +9,17 @@ namespace AforgeStudios.Signomaly
     {
         [Header("References"), Space]
         [SerializeField] private GameObject containerGameObj;
-        [SerializeField] private TextMeshProUGUI textMeshProUGUI;
 
         private void Start()
         {
             GameManager.Instance.OnPauseGame += GameManager_PauseMenu_OnPauseGame;
             GameManager.Instance.OnSettingGame += GameManager_PauseMenu_OnSettingGame;
+            GameManager.Instance.OnOpenStartGame += GameManager_PauseMenu_OnStartGame;
+        }
+
+        private void GameManager_PauseMenu_OnStartGame()
+        {
+            containerGameObj.SetActive(false);
         }
 
         private void GameManager_PauseMenu_OnSettingGame()
@@ -40,7 +45,7 @@ namespace AforgeStudios.Signomaly
 
         public void BackButtonClick()
         {
-            
+            GameManager.Instance.OpenStartGame();
         }
     }    
 }
