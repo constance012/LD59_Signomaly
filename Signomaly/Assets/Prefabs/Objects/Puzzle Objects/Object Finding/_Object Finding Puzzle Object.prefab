@@ -101,12 +101,12 @@ MonoBehaviour:
   _maximumOverlappedColliders: 2
   _includedLayers:
     serializedVersion: 2
-    m_Bits: 520
+    m_Bits: 2568
   _puzzleObject: {fileID: 4019368622225626823}
   _requiredObjectID: 
   _keyObjectLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2560
   _clueTitle: 
   _clueString: 
 --- !u!114 &4019368622225626823 stripped
