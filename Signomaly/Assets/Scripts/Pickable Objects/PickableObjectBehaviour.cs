@@ -27,7 +27,7 @@ namespace AforgeStudios.Signomaly
             {
                 if (interactUITransform == null)
                 {
-                    interactUITransform = Instantiate(interactableObjUIPrefab, transform.position + offset, Quaternion.identity, transform);
+                    interactUITransform = Instantiate(interactableObjUIPrefab, transform.position + offset, Quaternion.identity);
                 }
 
                 TryShowUIPrompt();
@@ -95,13 +95,14 @@ namespace AforgeStudios.Signomaly
 
         private void TryShowUIPrompt()
         {
-            if (canShowUI)
+            if (canShowUI && interactUITransform != null)
             {
-                InteractableObjUI interactableObjUI = GetComponentInChildren<InteractableObjUI>(true);
+                SetUIPromptActive(true);
+                InteractableObjUI interactableObjUI = interactUITransform.GetComponentInChildren<InteractableObjUI>();
                 if (interactableObjUI != null)
                 {
                     interactableObjUI.Show(interactKey.ToString(), interactText);
-                    SetUIPromptActive(true);
+                    interactUITransform.position = transform.position + offset;
                 }
             }
         }
