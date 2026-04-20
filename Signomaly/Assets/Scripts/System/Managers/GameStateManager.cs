@@ -22,7 +22,7 @@ namespace AforgeStudios.Signomaly
 		public static event Action OnCompletedPuzzlesChanged;
 		public static event Action OnGameEnded;
 
-		private const string GAMEPLAY_SCENE_NAME = "Scenes/GamePlay";
+		private const string GAMEPLAY_SCENE_NAME = "Scenes/Gameplay";
 		private const string MAIN_MENU_SCENE_NAME = "Scenes/Main Menu";
 
 		private int _puzzlesCompleted = 0;
