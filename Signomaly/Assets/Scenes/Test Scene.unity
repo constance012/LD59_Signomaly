@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &69397518 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5235918742842757782, guid: 403fef71ae5fc064ca34a954947d3adb, type: 3}
+  m_PrefabInstance: {fileID: 6334256526150138533}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f78eae61799f4940837c54f6681e4a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
 --- !u!1 &94807057
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,9 +922,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragableObject
   rb: {fileID: 1331408009}
-  col: {fileID: 0}
-  pickableObjBehaviour: {fileID: 0}
-  playerPickAndDrop: {fileID: 0}
+  col: {fileID: 1331408005}
+  pickableObjBehaviour: {fileID: 1331408010}
+  playerPickAndDrop: {fileID: 69397518}
 --- !u!1 &1620235359
 GameObject:
   m_ObjectHideFlags: 0

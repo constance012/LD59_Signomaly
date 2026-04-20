@@ -1209,6 +1209,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8af5e084b0460445b2680b4b8c29e56, type: 3}
+--- !u!1 &1497265941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1497265943}
+  - component: {fileID: 1497265942}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1497265942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497265941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143b9605a97578b4181fb4b5a7bd0030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.GameManager
+--- !u!4 &1497265943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497265941}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.78964, y: 0.94363, z: 0.81988}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1632710194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,6 +1408,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7817863379949141168, guid: 0d9697e4febdaae4ebe09dee091b3f3b, type: 3}
   m_PrefabInstance: {fileID: 1741658757}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1761647960 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5235918742842757782, guid: 403fef71ae5fc064ca34a954947d3adb, type: 3}
+  m_PrefabInstance: {fileID: 1133565212}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f78eae61799f4940837c54f6681e4a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
 --- !u!1001 &1764930638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1459,6 +1514,22 @@ Transform:
   - {fileID: 8099339997699045554}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1774081275 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8919059408586664539, guid: 68598090b2e3534418d668db441896c3, type: 3}
+  m_PrefabInstance: {fileID: 1785383490}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783d9717d37cf6545a59f58ab44c8b52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.PickableObjectBehaviour
+--- !u!65 &1774081277 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 3793541898717949061, guid: 68598090b2e3534418d668db441896c3, type: 3}
+  m_PrefabInstance: {fileID: 1785383490}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1785383490
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1507,6 +1578,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6805166259193704391, guid: 68598090b2e3534418d668db441896c3, type: 3}
+      propertyPath: col
+      value: 
+      objectReference: {fileID: 1774081277}
+    - target: {fileID: 6805166259193704391, guid: 68598090b2e3534418d668db441896c3, type: 3}
+      propertyPath: playerPickAndDrop
+      value: 
+      objectReference: {fileID: 1761647960}
+    - target: {fileID: 6805166259193704391, guid: 68598090b2e3534418d668db441896c3, type: 3}
+      propertyPath: pickableObjBehaviour
+      value: 
+      objectReference: {fileID: 1774081275}
     - target: {fileID: 7741420782093587346, guid: 68598090b2e3534418d668db441896c3, type: 3}
       propertyPath: m_Name
       value: Key
@@ -2410,3 +2493,4 @@ SceneRoots:
   - {fileID: 1486762923}
   - {fileID: 37965613}
   - {fileID: 4936201838784281020}
+  - {fileID: 1497265943}
