@@ -1,5 +1,6 @@
 using System;
 using CSTGames.SharedResources;
+using TMPro;
 using UnityEngine;
 
 namespace AforgeStudios.Signomaly
@@ -9,6 +10,7 @@ namespace AforgeStudios.Signomaly
 		[Header("UI References"), Space]
 		[SerializeField] private GameObject _gameOverUI;
 		[SerializeField] private GameObject _gameWinUI;
+		[SerializeField] private TextMeshProUGUI _remainingTimeText;
 
 		[Header("Win Conditions"), Space]
 		[SerializeField] private int _totalPuzzlesToSolve = 3;
@@ -62,6 +64,8 @@ namespace AforgeStudios.Signomaly
 		{
 			GlobalService.Instance.TogglePlayerInput(false);
 			GlobalService.Instance.ToggleLockCursor(false);
+
+			_remainingTimeText.text = $"Remaining Time: {MainLevelTimer.Instance.RemainingTimeFormatted}";
 
 			_gameWinUI.SetActive(true);
 			OnGameEnded?.Invoke();
