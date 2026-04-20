@@ -1,5 +1,6 @@
 using CSTGames.SharedResources;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace AforgeStudios.Signomaly
 {
@@ -39,6 +40,11 @@ namespace AforgeStudios.Signomaly
 
         public void ReadInputValues()
 		{
+            if(NewInputManager.Instance.GetKeyDown(Key.Escape))
+            {
+                GameManager.Instance.PauseGame();
+            }
+
 			var inputVector = NewInputManager.Instance.ReadValue<Vector2>(KeybindingAction.Movement);
 
 			_inputValues.x = inputVector.x;
