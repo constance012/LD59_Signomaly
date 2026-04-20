@@ -183,7 +183,7 @@ namespace AforgeStudios.Signomaly
 		protected abstract void CheckForInteraction();
 #endregion
 
-		private bool IsReceiverInLayerMask(InteractionReceiver receiver, LayerMask layerMask)
+		protected bool IsReceiverInLayerMask(InteractionReceiver receiver, LayerMask layerMask)
 		{
 			return (layerMask.value & (1 << receiver.gameObject.layer)) > 0;
 		}
