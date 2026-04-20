@@ -1,3 +1,4 @@
+using System;
 using CSTGames.SharedResources;
 using UnityEngine;
 
@@ -11,6 +12,13 @@ namespace AforgeStudios.Signomaly
 
 		[Header("Win Conditions"), Space]
 		[SerializeField] private int _totalPuzzlesToSolve = 3;
+
+		public int TotalPuzzlesToSolve => _totalPuzzlesToSolve;
+		public int PuzzlesCompleted => _puzzlesCompleted;
+		public bool IsWinConditionMet => _puzzlesCompleted >= _totalPuzzlesToSolve;
+
+		public static event Action OnCompletedPuzzlesChanged;
+		public static event Action OnGameEnded;
 
 		private const string GAMEPLAY_SCENE_NAME = "Scenes/GamePlay";
 		private const string MAIN_MENU_SCENE_NAME = "Scenes/Main Menu";
@@ -33,13 +41,18 @@ namespace AforgeStudios.Signomaly
 			GlobalService.Instance.ToggleLockCursor(false);
 
 			_gameOverUI.SetActive(true);
+			OnGameEnded?.Invoke();
 		}
 
 		public void IncrementPuzzleCompletion()
 		{
 			_puzzlesCompleted++;
+			OnCompletedPuzzlesChanged?.Invoke();
+		}
 
-			if (_puzzlesCompleted >= _totalPuzzlesToSolve)
+		public void CheckForWinCondition()
+		{
+			if (IsWinConditionMet)
 			{
 				GameWin();
 			}
@@ -51,6 +64,7 @@ namespace AforgeStudios.Signomaly
 			GlobalService.Instance.ToggleLockCursor(false);
 
 			_gameWinUI.SetActive(true);
+			OnGameEnded?.Invoke();
 		}
 #endregion
 
