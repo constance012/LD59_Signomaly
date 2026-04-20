@@ -1,5 +1,6 @@
 using System;
 using CSTGames.SharedResources;
+using Mono.Cecil;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -37,6 +38,17 @@ namespace AforgeStudios.Signomaly
             GetMouseInput();
 
             HandleCameraMovement();
+        }
+
+        public static bool IsInsideCameraFrustum(Collider collider)
+        {
+            var camera = Camera.main;
+            Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
+
+            if(GeometryUtility.TestPlanesAABB(planes, collider.bounds))
+                return true;
+            
+            return false;
         }
 
         private void GetMouseInput()
