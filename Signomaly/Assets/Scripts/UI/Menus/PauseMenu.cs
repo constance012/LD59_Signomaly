@@ -9,6 +9,7 @@ namespace AforgeStudios.Signomaly
     {
         [Header("References"), Space]
         [SerializeField] private GameObject containerGameObj;
+        [SerializeField] private TextMeshProUGUI textMeshProUGUI;
 
         private void Start()
         {
