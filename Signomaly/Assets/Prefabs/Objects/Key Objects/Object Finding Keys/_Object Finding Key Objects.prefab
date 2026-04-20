@@ -57,8 +57,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1323776027051143011, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
-      insertIndex: 1
+      insertIndex: -1
       addedObject: {fileID: 2591361611162210536}
+    - targetCorrespondingSourceObject: {fileID: 1323776027051143011, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5969473764185959355}
     - targetCorrespondingSourceObject: {fileID: 6418925139445979806, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7600901033085672597}
@@ -102,6 +105,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.PickableObjectPhysicHandler
   rb: {fileID: 2591361611162210536}
   iO: {fileID: 7600901033085672597}
+--- !u!114 &7087519346550530718 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 709054558743521441, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+  m_PrefabInstance: {fileID: 7749846230512765503}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3645776537516347553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e924c1abd6b9a604b9ad7b1fce9c6597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.InteractionReceiver
 --- !u!1 &8778082328092255580 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1323776027051143011, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
@@ -134,3 +148,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5969473764185959355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8778082328092255580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 547fefe284aeb6945b2001e05f1b370e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.FindingRequiredObject
+  _objectID: 
+  _objectName: 
+  _interactionReceiver: {fileID: 7087519346550530718}

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6317025936067245637}
-  - component: {fileID: 5329649746175976158}
   m_Layer: 9
   m_Name: Key Object
   m_TagString: Untagged
@@ -34,21 +33,6 @@ Transform:
   - {fileID: 4178464661331903911}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5329649746175976158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1323776027051143011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 547fefe284aeb6945b2001e05f1b370e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.KeyObject
-  _objectID: 
-  _objectName: Key Object
-  _interactionReceiver: {fileID: 709054558743521441}
 --- !u!1 &2027699558384663409
 GameObject:
   m_ObjectHideFlags: 0

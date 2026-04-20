@@ -41,11 +41,11 @@ namespace AforgeStudios.Signomaly
 
 			if (LegacyInputManager.Instance.GetKeyDown(KeybindingAction.Interact))
 			{
-				TrySubmitKeyObject();
+				TrySubmitRequiredObject();
 			}
 		}
 
-		private bool TrySubmitKeyObject()
+		private bool TrySubmitRequiredObject()
 		{
 			var nearestReceiver = GetNearestReceiverWithLayerMask(_keyObjectLayerMask);
 
@@ -55,9 +55,9 @@ namespace AforgeStudios.Signomaly
 				return false;
 			}
 
-			KeyObject keyObject = nearestReceiver.GetComponentInParent<KeyObject>();
+			FindingRequiredObject requiredObject = nearestReceiver.GetComponentInParent<FindingRequiredObject>();
 
-			if (keyObject != null && keyObject.ObjectID == _requiredObjectID)
+			if (requiredObject != null && requiredObject.ObjectID == _requiredObjectID)
 			{
 				SolvePuzzle();
 				return true;

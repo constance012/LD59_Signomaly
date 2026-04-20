@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6428518242634171536
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1323776027051143011, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+      propertyPath: m_Name
+      value: _Passcode Clue Objects
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317025936067245637, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317025936067245637, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317025936067245637, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317025936067245637, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317025936067245637, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317025936067245637, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317025936067245637, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317025936067245637, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317025936067245637, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317025936067245637, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1323776027051143011, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4597695645332979095}
+  m_SourcePrefab: {fileID: 100100000, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+--- !u!1 &5433680912474418163 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1323776027051143011, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+  m_PrefabInstance: {fileID: 6428518242634171536}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4597695645332979095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5433680912474418163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1800b956e7095284a9b75ce8c62c390f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.PasscodeClueObject
+  _objectID: 
+  _objectName: 
+  _interactionReceiver: {fileID: 5828148391809608753}
+  _clueTitle: 
+  _clueString: 
+--- !u!114 &5828148391809608753 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 709054558743521441, guid: 4565c52ca2586274fa411116d4eb5f1d, type: 3}
+  m_PrefabInstance: {fileID: 6428518242634171536}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e924c1abd6b9a604b9ad7b1fce9c6597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.InteractionReceiver

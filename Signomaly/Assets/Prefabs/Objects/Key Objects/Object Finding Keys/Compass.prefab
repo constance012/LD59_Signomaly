@@ -56,6 +56,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5969473764185959355, guid: 575432f5199e9a84d8c049948a5c61af, type: 3}
+      propertyPath: _objectID
+      value: "PZ_COMPASS\t"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969473764185959355, guid: 575432f5199e9a84d8c049948a5c61af, type: 3}
+      propertyPath: _objectName
+      value: Compass
+      objectReference: {fileID: 0}
     - target: {fileID: 8778082328092255580, guid: 575432f5199e9a84d8c049948a5c61af, type: 3}
       propertyPath: m_Name
       value: Compass
