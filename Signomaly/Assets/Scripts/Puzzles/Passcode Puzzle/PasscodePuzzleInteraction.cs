@@ -9,6 +9,7 @@ namespace AforgeStudios.Signomaly
 		[Header("References"), Space]
 		[SerializeField] private PuzzleObjectBehaviour _puzzleObject;
 		[SerializeField] private PasscodePanelUI _passcodePanelUI;
+		[SerializeField] private Transform _cameraFocusPoint;
 
 		[Header("Required Object Settings"), Space]
 		[SerializeField] private string _requiredPasscode;
@@ -46,6 +47,7 @@ namespace AforgeStudios.Signomaly
 
 		private void OpenPasscodePanelUI()
 		{
+			MoveCamera.OverrideCameraFollowTarget(_cameraFocusPoint);
 			_passcodePanelUI.Show();
 		}
 

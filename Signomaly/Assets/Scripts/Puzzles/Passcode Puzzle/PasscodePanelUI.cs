@@ -31,6 +31,8 @@ namespace AforgeStudios.Signomaly
 			GlobalService.Instance.ToggleLockCursor(true);
 			GlobalService.Instance.TogglePlayerInput(true);
 
+			MoveCamera.ResetCameraFollowTarget();
+
 			gameObject.SetActive(false);
 
 			ResetUI();
