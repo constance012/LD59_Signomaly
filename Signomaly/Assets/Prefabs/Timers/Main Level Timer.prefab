@@ -212,6 +212,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.MainLevelTimer
   _timerCanvas: {fileID: 4792807953730084424}
   _timerText: {fileID: 2526481601362564000}
-  _durationSeconds: 60
+  _durationSeconds: 900
   _startOnAwake: 0
   _debugSubtractSeconds: 10

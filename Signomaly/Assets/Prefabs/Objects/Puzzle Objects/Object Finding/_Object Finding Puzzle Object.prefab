@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 259978175719809920, guid: 4f596d54c054ec54eaa9355830a22d29, type: 3}
+      propertyPath: _anomalyStateDurationSeconds
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 259978175719809920, guid: 4f596d54c054ec54eaa9355830a22d29, type: 3}
+      propertyPath: _anomalyStateSwitchDelayRangeSeconds.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 259978175719809920, guid: 4f596d54c054ec54eaa9355830a22d29, type: 3}
+      propertyPath: _anomalyStateSwitchDelayRangeSeconds.y
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1253198637360759906, guid: 4f596d54c054ec54eaa9355830a22d29, type: 3}
       propertyPath: m_Name
       value: _Object Finding Puzzle Object
@@ -55,6 +67,10 @@ PrefabInstance:
     - target: {fileID: 5033595281086654241, guid: 4f596d54c054ec54eaa9355830a22d29, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5403949659868477335, guid: 4f596d54c054ec54eaa9355830a22d29, type: 3}
+      propertyPath: _durationSeconds
+      value: 420
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
