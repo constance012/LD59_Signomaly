@@ -1,22 +1,22 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSTGames.SharedResources;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace AforgeStudios.Signomaly
 {
-    public class NPCTalking : MonoBehaviour
+    public class InteractiveNPC : InteractableRoomObject
     {
-        // [Header("References"), Space]
+        [Header("References"), Space]
+        [SerializeField] private GameObject _dialoguePanelUI;
         [SerializeField] private TextMeshProUGUI nameTextMesh;
         [SerializeField] private TextMeshProUGUI writeTextMesh;
         [SerializeField] private Image iconSkip;
         [SerializeField] private float timePerCharacter;
         [SerializeField] private Button skipButton;
-        [SerializeField] private string name;
+
+        public bool IsInConversation => _dialoguePanelUI.activeInHierarchy;
 
         private EffectTextWriterSingle writerSingle;
         private int meetTimes;
@@ -24,53 +24,39 @@ namespace AforgeStudios.Signomaly
         private int indexScript;
         List<string> script;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             meetTimes = 0;
             indexScript = 0;
             script = new List<string>();
         }
 
-        private void Start()
+        protected override void SetupComponents()
         {
-            StartConversation();
-            
-            skipButton.onClick.AddListener(() =>
+            base.SetupComponents();
+            _dialoguePanelUI.SetActive(false);
+        }
+
+        public override void Interact()
+        {
+            if (IsInConversation)
             {
-                
-                    if(canSkip && writerSingle != null && writerSingle.IsActive())
-                    {
-                        writerSingle.WriteAllAndDestroy();
-                    }
-                    else if(script != null && writerSingle != null && !writerSingle.IsActive())
-                    {
-                        writerSingle = TextWriter.Instance.AddWrite(writeTextMesh, script[indexScript], timePerCharacter, StopTalking);
-                        
-                        indexScript++;
-                            
-                        if(indexScript >= script.Count)
-                        {
-                            Debug.Log("End Conversation");
-                            script = null;
-                        }
-                    }
-            });
+                return;
+            }
+
+            StartConversation();
+            meetTimes++;
         }
 
         private void Update()
         {
-            if(NewInputManager.Instance.GetKeyDown(UnityEngine.InputSystem.Key.R))
+            if (writerSingle != null)
             {
-                Debug.Log("talk again");
-                meetTimes++;
-                StartConversation();
-            }
-
-            if(writerSingle != null)
-            {
-                if(meetTimes == 0)
+                if (meetTimes == 0)
                 {
-                    if(writerSingle.IsActive())
+                    if (writerSingle.IsActive())
                     {
                         iconSkip.enabled = false;
                     }
@@ -88,9 +74,13 @@ namespace AforgeStudios.Signomaly
 
         private void StartConversation()
         {
-            if(meetTimes == 0)
+            GlobalService.Instance.ToggleLockCursor(false);
+            GlobalService.Instance.TogglePlayerInput(false);
+            
+            _dialoguePanelUI.SetActive(true);
+
+            if (meetTimes == 0)
             {
-                //First Conversation
                 script = DialogueScript.firstDialogue.ToList();
                 indexScript = 0;
                 canSkip = false;
@@ -102,13 +92,53 @@ namespace AforgeStudios.Signomaly
                 canSkip = true;
             }
 
-            nameTextMesh.text = name;
+            nameTextMesh.text = _objectName;
             writerSingle = TextWriter.Instance.AddWrite(writeTextMesh, script[indexScript++], timePerCharacter, null);
         }
 
-        private void StopTalking()
+        private void EndConversation()
         {
-            return;
+            _dialoguePanelUI.SetActive(false);
+
+            GlobalService.Instance.ToggleLockCursor(true);
+            GlobalService.Instance.TogglePlayerInput(true);
+        }
+
+        private void OnSentenceEnded()
+        {
+            
+        }
+
+        public void SkipButton_OnClicked()
+        {
+            if (script == null)
+            {
+                EndConversation();
+                return;
+            }
+
+            SkipSentence();
+        }
+
+        private void SkipSentence()
+        {
+            if (canSkip && writerSingle != null && writerSingle.IsActive())
+            {
+                Debug.Log("Skipping current sentence");
+                writerSingle.WriteAllAndDestroy();
+            }
+            else if (script != null && writerSingle != null && !writerSingle.IsActive())
+            {
+                Debug.Log("Moving to next sentence");
+                writerSingle = TextWriter.Instance.AddWrite(writeTextMesh, script[indexScript], timePerCharacter, OnSentenceEnded);
+
+                indexScript++;
+
+                if (indexScript >= script.Count)
+                {
+                    script = null;
+                }
+            }
         }
 
         public void ResetMeetTimes()
@@ -116,7 +146,7 @@ namespace AforgeStudios.Signomaly
             meetTimes = 0;
         }
     }
-    
+
     public class DialogueScript
     {
         public static readonly string[] firstDialogue =

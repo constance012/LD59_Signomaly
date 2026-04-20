@@ -20,7 +20,7 @@ namespace AforgeStudios.Signomaly
 
         public EffectTextWriterSingle AddWrite(TextMeshProUGUI writeTextMesh, string textToWrite, float timePerCharacter, Action OnComplete, bool isInvisibleCharacter = true, bool removeBeforAdd = true)
         {
-            if(removeBeforAdd)
+            if (removeBeforAdd)
                 RemoveWrite(writeTextMesh);
 
             EffectTextWriterSingle writerSingle = new EffectTextWriterSingle(writeTextMesh, textToWrite, timePerCharacter, isInvisibleCharacter, OnComplete);
@@ -31,9 +31,9 @@ namespace AforgeStudios.Signomaly
 
         public void RemoveWrite(TextMeshProUGUI UIText)
         {
-            for(int i = 0; i < textWriterList.Count; i++)
+            for (int i = 0; i < textWriterList.Count; i++)
             {
-                if(textWriterList[i].GetUIText() == UIText)
+                if (textWriterList[i].GetUIText() == UIText)
                 {
                     textWriterList.RemoveAt(i);
                     i--;
@@ -43,9 +43,9 @@ namespace AforgeStudios.Signomaly
 
         private void Update()
         {
-            for(int i = 0; i < textWriterList.Count; i++)
+            for (int i = 0; i < textWriterList.Count; i++)
             {
-                if(textWriterList[i].UpdateWritingText())
+                if (textWriterList[i].UpdateWritingText())
                 {
                     textWriterList.RemoveAt(i);
                     i--;
@@ -77,23 +77,23 @@ namespace AforgeStudios.Signomaly
         public bool UpdateWritingText()
         {
             timer -= Time.deltaTime;
-            while(timer <= 0f)
+            while (timer <= 0f)
             {
                 timer += timePerCharacter;
                 characterIndex++;
 
                 string text = textToWrite.Substring(0, characterIndex);
-                
-                if(isInvisibleCharacter)
+
+                if (isInvisibleCharacter)
                 {
                     text += "<color=#00000000>" + textToWrite.Substring(characterIndex) + "</color>";
                 }
-                
+
                 uIText.text = text;
 
-                if(characterIndex >= textToWrite.Length)
+                if (characterIndex >= textToWrite.Length)
                 {
-                    if(OnComplete != null)
+                    if (OnComplete != null)
                         OnComplete();
                     return true;
                 }
@@ -106,7 +106,7 @@ namespace AforgeStudios.Signomaly
         {
             uIText.text = textToWrite;
             characterIndex = textToWrite.Length;
-            if(OnComplete != null)
+            if (OnComplete != null)
                 OnComplete();
             TextWriter.Instance.RemoveWrite(uIText);
         }
