@@ -60,7 +60,7 @@ MonoBehaviour:
     audioCategory: 0
     clips:
     - {fileID: 8300000, guid: 77cc429502edfa94596b5a9183660029, type: 3}
-    volume: 1
+    volume: 0.8
     pitch: 1
     isLooped: 0
     playOnAwake: 0

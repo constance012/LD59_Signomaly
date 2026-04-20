@@ -106,6 +106,7 @@ namespace AforgeStudios.Signomaly
         private void EndConversation()
         {
             _dialoguePanelUI.SetActive(false);
+            AudioManager.Instance.Stop("Dialogue Typing");
 
             GlobalService.Instance.ToggleLockCursor(true);
             GlobalService.Instance.TogglePlayerInput(true);
