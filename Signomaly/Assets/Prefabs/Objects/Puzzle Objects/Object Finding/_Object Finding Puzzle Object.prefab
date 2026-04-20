@@ -102,6 +102,7 @@ MonoBehaviour:
   _includedLayers:
     serializedVersion: 2
     m_Bits: 2568
+  _shouldHitTriggers: 0
   _puzzleObject: {fileID: 4019368622225626823}
   _requiredObjectID: 
   _keyObjectLayerMask:

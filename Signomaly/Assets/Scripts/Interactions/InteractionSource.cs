@@ -8,6 +8,7 @@ namespace AforgeStudios.Signomaly
 		[SerializeField] protected float _interactRadius = 2f;
 		[SerializeField] protected int _maximumOverlappedColliders = 3;
 		[SerializeField] protected LayerMask _includedLayers;
+		[SerializeField] protected bool _shouldHitTriggers;
 
 		public bool AreReceiversInRange { get; protected set; }
 
@@ -53,7 +54,7 @@ namespace AforgeStudios.Signomaly
 		protected void DetectReceivers()
 		{
 			ClearCollidersArray();
-			int newReceiversCount = Physics.OverlapSphereNonAlloc(transform.position, _interactRadius, _overlappedColliders, _includedLayers);
+			int newReceiversCount = Physics.OverlapSphereNonAlloc(transform.position, _interactRadius, _overlappedColliders, _includedLayers, _shouldHitTriggers ? QueryTriggerInteraction.Collide : QueryTriggerInteraction.Ignore);
 
 			AreReceiversInRange = newReceiversCount > 0;
 

@@ -763,6 +763,7 @@ MonoBehaviour:
   _includedLayers:
     serializedVersion: 2
     m_Bits: 8
+  _shouldHitTriggers: 0
   _puzzleObject: {fileID: 6584082661293841226}
   _passcodePanelUI: {fileID: 7648955387928184587}
   _requiredPasscode: 59417

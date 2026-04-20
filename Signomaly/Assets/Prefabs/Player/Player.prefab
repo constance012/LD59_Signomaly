@@ -131,7 +131,8 @@ MonoBehaviour:
   _maximumOverlappedColliders: 3
   _includedLayers:
     serializedVersion: 2
-    m_Bits: 2816
+    m_Bits: 6912
+  _shouldHitTriggers: 1
 --- !u!1 &2698637142197335771
 GameObject:
   m_ObjectHideFlags: 0
