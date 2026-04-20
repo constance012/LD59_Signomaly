@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace AforgeStudios.Signomaly
 {
-    public class NPC : MonoBehaviour
+    public class NPCTalking : MonoBehaviour
     {
         // [Header("References"), Space]
         [SerializeField] private TextMeshProUGUI nameTextMesh;
