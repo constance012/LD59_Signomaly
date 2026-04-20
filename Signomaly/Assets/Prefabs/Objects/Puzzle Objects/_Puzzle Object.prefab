@@ -146,13 +146,13 @@ MonoBehaviour:
     LocalPositionOffset: {x: 0, y: 0, z: 0}
     LocalRotation: {x: 0, y: 0, z: 0}
     LocalScale: {x: 1, y: 1, z: 1}
-    OverrideMaterial: {fileID: 0}
+    OverrideMaterials: []
   _anomalyStateData:
     Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-    LocalPositionOffset: {x: 0, y: 0.1, z: 0}
-    LocalRotation: {x: 45, y: 45, z: 0}
-    LocalScale: {x: 0.8, y: 0.8, z: 0.8}
-    OverrideMaterial: {fileID: 0}
+    LocalPositionOffset: {x: 0, y: 0, z: 0}
+    LocalRotation: {x: 0, y: 0, z: 0}
+    LocalScale: {x: 1, y: 1, z: 1}
+    OverrideMaterials: []
 --- !u!1 &2090575227306496904
 GameObject:
   m_ObjectHideFlags: 0

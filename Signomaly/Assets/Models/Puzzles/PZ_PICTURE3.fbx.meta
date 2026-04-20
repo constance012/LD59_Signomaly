@@ -3,7 +3,17 @@ guid: 522fd60b7aa882443b0e603837c163bb
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: paintedwood
+    second: {fileID: 2100000, guid: 5a753aca62e29fb439448f06845f9f91, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pictureimage2
+    second: {fileID: 2100000, guid: 36715cd1234d3a24f95f12654b59465b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

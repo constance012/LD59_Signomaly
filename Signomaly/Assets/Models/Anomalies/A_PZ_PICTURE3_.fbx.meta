@@ -3,7 +3,17 @@ guid: 9614e233f446f8e40b0a846e0bc39a3f
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BienDi1
+    second: {fileID: 2100000, guid: 9968f2b5185ecd64f83cc103fe324b2b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pictureimage2.001
+    second: {fileID: 2100000, guid: f491052f55ecb0045beead1a9a121129, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
