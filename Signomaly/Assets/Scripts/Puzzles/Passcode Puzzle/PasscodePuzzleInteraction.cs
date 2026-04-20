@@ -13,9 +13,8 @@ namespace AforgeStudios.Signomaly
 		[Header("Required Object Settings"), Space]
 		[SerializeField] private string _requiredPasscode;
 
-		[Header("Puzzle Info"), Space]
-		[SerializeField] private string _clueTitle;
-		[SerializeField, TextArea(3, 10)] private string _clueString;
+		[Header("Instruction Note"), Space]
+		[SerializeField] private GameObject _instructionNotePrefab;
 
 		public bool IsPuzzleCompleted { get; set; }
 
@@ -26,8 +25,6 @@ namespace AforgeStudios.Signomaly
 			base.Setup();
 
 			_requiredPasscode = _requiredPasscode.Trim().ToUpper();
-			_clueTitle = _clueTitle.Trim();
-			_clueString = _clueString.Trim();
 		}
 
 		protected override void CheckForInteraction()
@@ -67,7 +64,7 @@ namespace AforgeStudios.Signomaly
 
 		public void ShowInstructions()
 		{
-			PuzzleInstructionUIHandler.Instance.ShowInstructions(_clueTitle, _clueString);
+			Instantiate(_instructionNotePrefab, transform.position + transform.forward * 0.5f, Quaternion.identity);
 		}
 	}
 }

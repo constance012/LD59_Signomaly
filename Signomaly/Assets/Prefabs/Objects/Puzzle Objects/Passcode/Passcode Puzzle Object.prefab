@@ -766,15 +766,7 @@ MonoBehaviour:
   _puzzleObject: {fileID: 6584082661293841226}
   _passcodePanelUI: {fileID: 7648955387928184587}
   _requiredPasscode: 59417
-  _clueTitle: Passcode Clues
-  _clueString: 'Five mysteries.
-
-    Five planets.
-
-    Five digits.
-
-    The order
-    lies in the space between them and the Sun.'
+  _instructionNotePrefab: {fileID: 8895439318030361888, guid: e470269d831ee9c4f8c84b9b393b09c8, type: 3}
 --- !u!114 &6584082661293841226 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 259978175719809920, guid: 4f596d54c054ec54eaa9355830a22d29, type: 3}
