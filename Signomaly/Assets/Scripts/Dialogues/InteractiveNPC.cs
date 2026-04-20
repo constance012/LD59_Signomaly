@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using CSTGames.SharedResources;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,7 @@ namespace AforgeStudios.Signomaly
         [SerializeField] private Button skipButton;
 
         public bool IsInConversation => _dialoguePanelUI.activeInHierarchy;
+        public bool IsFirstMeeting => meetTimes == 0;
 
         private EffectTextWriterSingle writerSingle;
         private int meetTimes;
@@ -47,14 +49,19 @@ namespace AforgeStudios.Signomaly
             }
 
             StartConversation();
-            meetTimes++;
         }
 
         private void Update()
         {
+            if (NewInputManager.Instance.WasPressedThisFrame(KeybindingAction.BackToMenu) && IsInConversation && !IsFirstMeeting)
+            {
+                EndConversation();
+                return;
+            }
+
             if (writerSingle != null)
             {
-                if (meetTimes == 0)
+                if (IsFirstMeeting)
                 {
                     if (writerSingle.IsActive())
                     {
@@ -79,7 +86,7 @@ namespace AforgeStudios.Signomaly
             
             _dialoguePanelUI.SetActive(true);
 
-            if (meetTimes == 0)
+            if (IsFirstMeeting)
             {
                 script = DialogueScript.firstDialogue.ToList();
                 indexScript = 0;
@@ -102,6 +109,8 @@ namespace AforgeStudios.Signomaly
 
             GlobalService.Instance.ToggleLockCursor(true);
             GlobalService.Instance.TogglePlayerInput(true);
+
+            meetTimes++;
         }
 
         private void OnSentenceEnded()
