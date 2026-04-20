@@ -18,7 +18,7 @@ namespace AforgeStudios.Signomaly
 		[SerializeField] private float _anomalyStateDurationSeconds = 7f;
 		[SerializeField] private Vector2 _anomalyStateSwitchDelayRangeSeconds = new(10f, 15f);
 
-		public bool IsPuzzleTriggered => _isPuzzleTriggered;
+		public static bool IsAnyPuzzleTriggered { get; set; }
 		public bool IsManualInteractRequired => _autoInteractDelaySeconds <= 0f;
 
 		public event Action OnPuzzleTriggered;
@@ -27,11 +27,10 @@ namespace AforgeStudios.Signomaly
 		private float _anomalyStateSwitchTimer;
 		private float _anomalyStateElapsedTime;
 		private float _autoInteractTimer;
-		private bool _isPuzzleTriggered;
 
 		private void Update()
 		{
-			if (_isPuzzleTriggered)
+			if (IsThisPuzzleStarted())
 			{
 				return;
 			}
@@ -67,7 +66,7 @@ namespace AforgeStudios.Signomaly
 #region Interaction
 		public override void Interact()
 		{
-			if (_isPuzzleTriggered || !IsManualInteractRequired)
+			if (IsAnyPuzzleTriggered || !IsManualInteractRequired)
 			{
 				return;
 			}
@@ -101,7 +100,8 @@ namespace AforgeStudios.Signomaly
 
 			_currentPuzzle.ShowInstructions();
 
-			_isPuzzleTriggered = true;
+			IsAnyPuzzleTriggered = true;
+
 			OnPuzzleTriggered?.Invoke();
 		}
 #endregion
@@ -144,12 +144,19 @@ namespace AforgeStudios.Signomaly
 #endregion
 
 #region Puzzle Handling
+		public bool IsThisPuzzleStarted()
+		{
+			return IsAnyPuzzleTriggered && _timer.IsRunning;
+		}
+
 		private void IPuzzle_OnPuzzleCompleted()
 		{
 			_visualHandler.SwitchState(PuzzleObjectVisualHandler.VisualState.Normal);
 
 			_timer.StopTimer();
 			_timer.gameObject.SetActive(false);
+
+			IsAnyPuzzleTriggered = false;
 
 			Debug.Log($"Puzzle solved: {gameObject.name}, remaining time: {_timer.RemainingTimeFormatted}", this);
 		}

@@ -34,7 +34,7 @@ namespace AforgeStudios.Signomaly
 
 		protected override void CheckForInteraction()
 		{
-			if (!_puzzleObject.IsPuzzleTriggered || IsPuzzleCompleted)
+			if (!_puzzleObject.IsThisPuzzleStarted() || IsPuzzleCompleted)
 			{
 				return;
 			}
