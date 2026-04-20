@@ -103,6 +103,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cup Champion
       objectReference: {fileID: 0}
+    - target: {fileID: 6415291672217732052, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
+      propertyPath: m_Size.x
+      value: 0.42528957
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415291672217732052, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
+      propertyPath: m_Size.y
+      value: 0.449856
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415291672217732052, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
+      propertyPath: m_Size.z
+      value: 0.38870925
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415291672217732052, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
+      propertyPath: m_Center.x
+      value: 0.005210042
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415291672217732052, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
+      propertyPath: m_Center.y
+      value: 0.06175749
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415291672217732052, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
+      propertyPath: m_Center.z
+      value: -0.0000053346157
+      objectReference: {fileID: 0}
     - target: {fileID: 6894445660422251628, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

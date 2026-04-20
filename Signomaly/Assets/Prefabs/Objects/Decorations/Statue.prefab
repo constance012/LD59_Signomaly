@@ -103,6 +103,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Statue
       objectReference: {fileID: 0}
+    - target: {fileID: 6415291672217732052, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
+      propertyPath: m_Size.x
+      value: 1.0724247
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415291672217732052, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
+      propertyPath: m_Size.y
+      value: 2.3898
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415291672217732052, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
+      propertyPath: m_Center.x
+      value: 0.0046634674
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415291672217732052, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
+      propertyPath: m_Center.y
+      value: 1.1980743
+      objectReference: {fileID: 0}
     - target: {fileID: 6894445660422251628, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

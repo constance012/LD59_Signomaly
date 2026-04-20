@@ -103,6 +103,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cup of Coffee
       objectReference: {fileID: 0}
+    - target: {fileID: 6415291672217732052, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
+      propertyPath: m_Size.x
+      value: 0.22770895
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415291672217732052, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
+      propertyPath: m_Size.y
+      value: 0.4286666
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415291672217732052, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
+      propertyPath: m_Size.z
+      value: 0.237387
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415291672217732052, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
+      propertyPath: m_Center.x
+      value: 0.0031408295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415291672217732052, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
+      propertyPath: m_Center.y
+      value: 0.026454866
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415291672217732052, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
+      propertyPath: m_Center.z
+      value: -0.0015427619
+      objectReference: {fileID: 0}
     - target: {fileID: 6894445660422251628, guid: 0296b61a6e15d5c4ab81faf4e49df916, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
