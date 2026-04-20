@@ -655,10 +655,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 213741862}
     m_Modifications:
+    - target: {fileID: 1066145472542791928, guid: 68598090b2e3534418d668db441896c3, type: 3}
+      propertyPath: col
+      value: 
+      objectReference: {fileID: 1513094867}
+    - target: {fileID: 1066145472542791928, guid: 68598090b2e3534418d668db441896c3, type: 3}
+      propertyPath: playerPickAndDrop
+      value: 
+      objectReference: {fileID: 1431237343}
+    - target: {fileID: 1066145472542791928, guid: 68598090b2e3534418d668db441896c3, type: 3}
+      propertyPath: pickableObjBehaviour
+      value: 
+      objectReference: {fileID: 1513094865}
     - target: {fileID: 3835443788180612720, guid: 68598090b2e3534418d668db441896c3, type: 3}
       propertyPath: m_Name
       value: Key
       objectReference: {fileID: 0}
+    - target: {fileID: 6224292958483419367, guid: 68598090b2e3534418d668db441896c3, type: 3}
+      propertyPath: interactUIParentTransform
+      value: 
+      objectReference: {fileID: 779386657}
     - target: {fileID: 8128523554473115478, guid: 68598090b2e3534418d668db441896c3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.79
@@ -903,6 +919,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 213741862}
     m_Modifications:
+    - target: {fileID: 1066145472542791928, guid: 3031d20ccc8f69240aad987ec5f091d8, type: 3}
+      propertyPath: playerPickAndDrop
+      value: 
+      objectReference: {fileID: 1431237343}
+    - target: {fileID: 1066145472542791928, guid: 3031d20ccc8f69240aad987ec5f091d8, type: 3}
+      propertyPath: pickableObjBehaviour
+      value: 
+      objectReference: {fileID: 2138548526}
     - target: {fileID: 3835443788180612720, guid: 3031d20ccc8f69240aad987ec5f091d8, type: 3}
       propertyPath: m_Name
       value: Compass
@@ -957,6 +981,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8128523554473115478, guid: 3031d20ccc8f69240aad987ec5f091d8, type: 3}
   m_PrefabInstance: {fileID: 1327724036}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1431237343 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5235918742842757782, guid: 403fef71ae5fc064ca34a954947d3adb, type: 3}
+  m_PrefabInstance: {fileID: 1133565212}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f78eae61799f4940837c54f6681e4a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
 --- !u!1001 &1486762923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1014,6 +1049,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8af5e084b0460445b2680b4b8c29e56, type: 3}
+--- !u!114 &1513094865 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6224292958483419367, guid: 68598090b2e3534418d668db441896c3, type: 3}
+  m_PrefabInstance: {fileID: 779386656}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783d9717d37cf6545a59f58ab44c8b52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.PickableObjectBehaviour
+--- !u!135 &1513094867 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 3307800967642033891, guid: 68598090b2e3534418d668db441896c3, type: 3}
+  m_PrefabInstance: {fileID: 779386656}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1632710194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,6 +1151,7 @@ GameObject:
   - component: {fileID: 2036245443}
   - component: {fileID: 2036245442}
   - component: {fileID: 2036245441}
+  - component: {fileID: 2036245444}
   m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
@@ -1201,6 +1253,44 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036245439}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &2036245444
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036245439}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &2138548526 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6224292958483419367, guid: 3031d20ccc8f69240aad987ec5f091d8, type: 3}
+  m_PrefabInstance: {fileID: 1327724036}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783d9717d37cf6545a59f58ab44c8b52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AforgeStudios.Signomaly.PickableObjectBehaviour
 --- !u!1001 &739952879905383350
 PrefabInstance:
   m_ObjectHideFlags: 0

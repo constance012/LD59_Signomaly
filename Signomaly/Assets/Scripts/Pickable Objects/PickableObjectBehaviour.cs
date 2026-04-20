@@ -16,7 +16,6 @@ namespace AforgeStudios.Signomaly
         [SerializeField] private Transform interactableObjUIPrefab;
 
         private Key interactKey;
-        private Transform playerTransform;
         private Transform interactUITransform;
 
         private bool canShowUI = true;
@@ -46,8 +45,6 @@ namespace AforgeStudios.Signomaly
                 PlayerPickAndDrop playerInteract = collider.GetComponentInParent<PlayerPickAndDrop>();
                 if (playerInteract != null)
                 {
-                    playerTransform = playerInteract.transform;
-
                     interactKey = playerInteract.GetInteractKey();
 
                     return true;
@@ -75,7 +72,10 @@ namespace AforgeStudios.Signomaly
         public void PickUp(Transform interactorTransform)
         {
             SetCanShowUI(false);
-            SetUIPromptActive(false);
+            if(interactUITransform != null)
+            {
+                SetUIPromptActive(false);
+            }
         }
 
         public void SetLockPickUpState(bool lockInteract)
