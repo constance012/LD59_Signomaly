@@ -64,6 +64,8 @@ namespace AforgeStudios.Signomaly
 			if (requiredObject != null && requiredObject.ObjectID == _requiredObjectID)
 			{
 				SolvePuzzle();
+				Destroy(requiredObject.gameObject);
+
 				return true;
 			}
 
