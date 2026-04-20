@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CSTGames.SharedResources;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -19,6 +20,12 @@ namespace AforgeStudios.Signomaly
 
         [Header("Audio Mixer"), Space]
         [SerializeField] private AudioMixer mixer;
+
+        [Header("Slider Groups"), Space]
+        [SerializeField] private SliderGroup masterSlider;
+        [SerializeField] private SliderGroup musicSlider;
+        [SerializeField] private SliderGroup soundSlider;
+        [SerializeField] private SliderGroup ambienceSlider;
 
         private Resolution[] resolutions;
         private bool isVideoPanel;
@@ -42,6 +49,7 @@ namespace AforgeStudios.Signomaly
 
         private void GameManager_SettingMenu_OnSettingGame()
         {
+            ReloadUI();
             ShowResolutionDropDown();
             containerGameObj.SetActive(true);
         }
@@ -87,19 +95,36 @@ namespace AforgeStudios.Signomaly
 
         public void SetMasterVolume(float amount)
         {
-            
+            mixer.SetFloat("masterVol", masterSlider.ValueAsMixerDecibel);
+
+            masterSlider.DisplayText = ConvertDecibelToText(amount);
+            UserSettings.MasterVolume = amount;
         }
         public void SetMusicVolume(float amount)
         {
-            
+            mixer.SetFloat("musicVol", musicSlider.ValueAsMixerDecibel);
+
+            musicSlider.DisplayText = ConvertDecibelToText(amount);
+            UserSettings.MusicVolume = amount;
         }
         public void SetSoundVolume(float amount)
         {
-            
+            mixer.SetFloat("soundVol", soundSlider.ValueAsMixerDecibel);
+
+            soundSlider.DisplayText = ConvertDecibelToText(amount);
+            UserSettings.SoundVolume = amount;
         }
         public void SetAmbienceVolume(float amount)
         {
-            
+            mixer.SetFloat("ambienceVol", ambienceSlider.ValueAsMixerDecibel);
+            Debug.Log(ambienceSlider.ValueAsMixerDecibel);
+            ambienceSlider.DisplayText = ConvertDecibelToText(amount);
+            UserSettings.AmbienceVolume = amount;
+        }
+
+        private string ConvertDecibelToText(float amount)
+        {
+            return (amount * 100f).ToString("0");
         }
 
         public void SetResolution(int resolutionIndex)
@@ -129,6 +154,30 @@ namespace AforgeStudios.Signomaly
             resolutionDropdown.AddOptions(options);
             resolutionDropdown.value = currentResolutionIndex;
             resolutionDropdown.RefreshShownValue();
+        }
+
+        public void ResetToDefault()
+        {
+            UserSettings.ResetToDefault(UserSettings.SettingSection.All);
+            ReloadUI();
+        }
+
+        private void ReloadUI()
+        {
+            float masterVol = UserSettings.MasterVolume;
+            float musicVol = UserSettings.MusicVolume;
+            float soundVol = UserSettings.SoundVolume;
+            float ambienceVol = UserSettings.AmbienceVolume;
+
+            masterSlider.Value = masterVol;
+            musicSlider.Value = musicVol;
+            soundSlider.Value = soundVol;
+            ambienceSlider.Value = ambienceVol;
+
+            masterSlider.DisplayText = ConvertDecibelToText(masterVol);
+            musicSlider.DisplayText = ConvertDecibelToText(musicVol);
+            soundSlider.DisplayText = ConvertDecibelToText(soundVol);
+            ambienceSlider.DisplayText = ConvertDecibelToText(ambienceVol);
         }
     }   
 }
