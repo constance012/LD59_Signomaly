@@ -30,7 +30,7 @@ namespace AforgeStudios.Signomaly
 
 		private void Update()
 		{
-			if (IsThisPuzzleStarted())
+			if (IsThisPuzzleCompleted() || IsThisPuzzleStarted())
 			{
 				return;
 			}
@@ -66,7 +66,7 @@ namespace AforgeStudios.Signomaly
 #region Interaction
 		public override void Interact()
 		{
-			if (IsAnyPuzzleTriggered || !IsManualInteractRequired)
+			if (_currentPuzzle.IsPuzzleCompleted || IsAnyPuzzleTriggered || !IsManualInteractRequired)
 			{
 				return;
 			}
@@ -147,6 +147,11 @@ namespace AforgeStudios.Signomaly
 		public bool IsThisPuzzleStarted()
 		{
 			return IsAnyPuzzleTriggered && _timer.IsRunning;
+		}
+
+		public bool IsThisPuzzleCompleted()
+		{
+			return _currentPuzzle != null && _currentPuzzle.IsPuzzleCompleted;
 		}
 
 		private void IPuzzle_OnPuzzleCompleted()
