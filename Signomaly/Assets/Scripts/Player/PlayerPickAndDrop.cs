@@ -32,6 +32,7 @@ namespace AforgeStudios.Signomaly
                     PlayerCamera.IsInsideCameraFrustum(interactable.GetTransform().GetComponent<Collider>()) &&
                     grabbingObjTransform == null)
                 {
+                    AudioManager.Instance.Play("Pickup Object");
                     interactable.PickUp(transform);
                     grabbingObjTransform = interactable.GetTransform();
                     PickUpObj(grabbingObjTransform);
@@ -42,7 +43,9 @@ namespace AforgeStudios.Signomaly
             {
                 if(grabbingObjTransform != null)
                 {
+                    AudioManager.Instance.Play("Drop Object");
                     DropDownObj(grabbingObjTransform);
+                    grabbingObjTransform = null;
                 }
             }
         }
@@ -55,13 +58,12 @@ namespace AforgeStudios.Signomaly
             }
         }
 
-        public void DropDownObj(Transform pickupObject)
+        private void DropDownObj(Transform pickupObject)
         {
             if(pickupObject.TryGetComponent<PickableObjectPhysicHandler>(out PickableObjectPhysicHandler dragable))
             {
                 dragable.DropObj();
             }
-            grabbingObjTransform = null;
         }
 
         public List<IPickable> GetInteractableList()

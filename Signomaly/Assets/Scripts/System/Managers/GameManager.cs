@@ -40,7 +40,8 @@ namespace AforgeStudios.Signomaly
             GlobalService.Instance.ToggleLockCursor(true);
             Time.timeScale = 1;
             IsStartGame = true;
-            SceneManager.LoadScene(0);
+
+            SceneLoader.Instance.LoadSceneAsync(GameStateManager.GAMEPLAY_SCENE_NAME);
         }
 
         public void OpenSettingGame()

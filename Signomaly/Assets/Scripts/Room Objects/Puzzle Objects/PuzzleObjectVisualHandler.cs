@@ -14,7 +14,7 @@ namespace AforgeStudios.Signomaly
 		[SerializeField] private VisualStateData _normalStateData;
 		[SerializeField] private VisualStateData _anomalyStateData;
 
-		public Material RendererMaterial { get; private set; }
+		public Material[] RendererMaterials { get; private set; }
 		public VisualState CurrentState { get; private set; } = VisualState.Normal;
 		public bool IsInAnomalyState => CurrentState == VisualState.Anomaly;
 
@@ -22,7 +22,7 @@ namespace AforgeStudios.Signomaly
 
 		private void Awake()
 		{
-			RendererMaterial = _meshRenderer.material;
+			RendererMaterials = _meshRenderer.materials;
 			_originalVisualLocalPosition = _objectVisualTransform.localPosition;
 		}
 
@@ -56,13 +56,13 @@ namespace AforgeStudios.Signomaly
 				_objectVisualTransform.localPosition = _originalVisualLocalPosition;
 			}
 
-			if (stateData.OverrideMaterial != null)
+			if (stateData.OverrideMaterials != null && stateData.OverrideMaterials.Length > 0)
 			{
-				_meshRenderer.material = stateData.OverrideMaterial;
+				_meshRenderer.materials = stateData.OverrideMaterials;
 			}
 			else
 			{
-				_meshRenderer.material = RendererMaterial;
+				_meshRenderer.materials = RendererMaterials;
 			}
 		}
 		
@@ -79,7 +79,7 @@ namespace AforgeStudios.Signomaly
 			public Vector3 LocalPositionOffset;
 			public Vector3 LocalRotation;
 			public Vector3 LocalScale = Vector3.one;
-			public Material OverrideMaterial;
+			public Material[] OverrideMaterials;
 		}
 	}
 }

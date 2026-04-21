@@ -1,3 +1,4 @@
+using CSTGames.SharedResources;
 using UnityEngine;
 
 namespace AforgeStudios.Signomaly
@@ -10,6 +11,7 @@ namespace AforgeStudios.Signomaly
 
 		public override void Interact()
 		{
+			AudioManager.Instance.Play("Read Clue");
 			PuzzleInstructionUIHandler.Instance.ShowInstructions(_clueTitle, _clueString);
 		}
 	}

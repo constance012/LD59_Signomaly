@@ -1,4 +1,5 @@
 using System;
+using CSTGames.SharedResources;
 using UnityEngine;
 
 namespace AforgeStudios.Signomaly
@@ -13,6 +14,8 @@ namespace AforgeStudios.Signomaly
             GameManager.Instance.OnOpenStartGame += GameManager_StartMenu_OnStartGame;
             GameManager.Instance.OnPauseGame += GameManager_StartMenu_OnPauseGame;
             GameManager.Instance.OnSettingGame += GameManager_StartMenu_OnSettingGame;
+
+            AudioManager.Instance.Play("Menu Music");
         }
 
         private void GameManager_StartMenu_OnStartGame()
@@ -32,6 +35,8 @@ namespace AforgeStudios.Signomaly
 
         public void NewGameButtonClick()
         {
+            AudioManager.Instance.Stop("Menu Music");
+
             containerGameObj.SetActive(false);
             GameManager.Instance.NewGame();
         }

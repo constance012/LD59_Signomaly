@@ -19,7 +19,7 @@ namespace AforgeStudios.Signomaly
 
 			if (PlayerCamera.IsPointedAtByMouseCursor(nearestReceiver, _interactRadius, out RaycastHit hitInfo))
 			{
-				if (hitInfo.collider.TryGetComponent(out InteractionReceiver receiver) && receiver.AllowsInteraction)
+				if (hitInfo.collider.TryGetComponent(out InteractionReceiver receiver) && receiver.AllowsInteraction && IsReceiverInLayerMask(receiver, _includedLayers))
 				{
 					receiver.Interact();
 				}

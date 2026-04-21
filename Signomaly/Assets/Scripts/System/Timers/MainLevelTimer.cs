@@ -1,11 +1,17 @@
 using System;
+using CSTGames.SharedResources;
 using UnityEngine;
 
 namespace AforgeStudios.Signomaly
 {
 	public class MainLevelTimer : TimerBase
 	{
+		[Header("Sound Settings"), Space]
+		[SerializeField] private int _tickingSoundStartThresholdSeconds = 180;
+
 		public static MainLevelTimer Instance { get; private set; }
+
+		private bool _isTickingSoundPlayed;
 
 		protected override void Awake()
 		{
@@ -20,6 +26,12 @@ namespace AforgeStudios.Signomaly
 #endif
 		}
 
+		protected override void LateUpdate()
+		{
+			base.LateUpdate();
+			HandleTickingSound();
+		}
+
 		public void SubstractTime(TimeSpan timeToSubtract)
 		{
 			_duration -= timeToSubtract;
@@ -28,6 +40,20 @@ namespace AforgeStudios.Signomaly
 		protected override void OnTimerComplete()
 		{
 			GameStateManager.Instance.GameOver();
+		}
+
+		private void HandleTickingSound()
+		{
+			if (_isTickingSoundPlayed)
+			{
+				return;
+			}
+
+			if (Duration <= TimeSpan.FromSeconds(_tickingSoundStartThresholdSeconds))
+			{
+				AudioManager.Instance.Play("Timer Alert");
+				_isTickingSoundPlayed = true;
+			}
 		}
 
 		private void MakeSingleton()

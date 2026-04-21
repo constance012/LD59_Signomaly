@@ -215,3 +215,4 @@ MonoBehaviour:
   _durationSeconds: 900
   _startOnAwake: 0
   _debugSubtractSeconds: 10
+  _tickingSoundStartThresholdSeconds: 180
