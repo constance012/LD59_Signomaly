@@ -41,7 +41,7 @@ namespace AforgeStudios.Signomaly
 
         public void ReadInputValues()
 		{
-            if(NewInputManager.Instance.GetKeyDown(Key.Escape))
+            if (NewInputManager.Instance.GetKeyDown(Key.Escape))
             {
                 GameManager.Instance.PauseGame();
             }

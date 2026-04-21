@@ -1,5 +1,6 @@
 using System;
 using AforgeStudios.Signomaly;
+using CSTGames.SharedResources;
 using TMPro;
 using UnityEngine;
 
@@ -45,7 +46,7 @@ namespace AforgeStudios.Signomaly
 
         public void BackButtonClick()
         {
-            GameManager.Instance.OpenStartGame();
+            SceneLoader.Instance.LoadSceneAsync(GameStateManager.MAIN_MENU_SCENE_NAME);
         }
     }    
 }
