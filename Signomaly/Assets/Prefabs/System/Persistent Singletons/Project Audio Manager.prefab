@@ -127,10 +127,10 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     audioSource: {fileID: 0}
   - entryName: Menu Music
-    audioCategory: 0
+    audioCategory: 1
     clips:
     - {fileID: 8300000, guid: 10a5490b318a69744973a83e4b69b3cf, type: 3}
-    volume: 0.8
+    volume: 0.5
     pitch: 1
     isLooped: 1
     playOnAwake: 0
