@@ -40,13 +40,13 @@ namespace AforgeStudios.Signomaly
         }
 
         public void ReadInputValues()
-		{
-            if (NewInputManager.Instance.GetKeyDown(Key.Escape))
+        {
+            if (NewInputManager.Instance.GetKeyDown(Key.Escape) && InteractiveNPC.IsFirstTalkEverHappened)
             {
                 GameManager.Instance.PauseGame();
             }
 
-			var inputVector = NewInputManager.Instance.ReadValue<Vector2>(KeybindingAction.Movement);
+            var inputVector = NewInputManager.Instance.ReadValue<Vector2>(KeybindingAction.Movement);
 
             _inputValues.x = inputVector.x;
             _inputValues.y = inputVector.y;

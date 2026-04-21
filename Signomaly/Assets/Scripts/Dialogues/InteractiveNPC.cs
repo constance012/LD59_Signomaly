@@ -10,6 +10,7 @@ namespace AforgeStudios.Signomaly
     public class InteractiveNPC : InteractableRoomObject
     {
         [Header("References"), Space]
+        [SerializeField] private Canvas _worldSpaceCanvas;
         [SerializeField] private GameObject _dialoguePanelUI;
         [SerializeField] private TextMeshProUGUI nameTextMesh;
         [SerializeField] private TextMeshProUGUI writeTextMesh;
@@ -19,6 +20,7 @@ namespace AforgeStudios.Signomaly
 
         public bool IsInConversation => _dialoguePanelUI.activeInHierarchy;
         public bool IsFirstMeeting => meetTimes == 0;
+        public static bool IsFirstTalkEverHappened { get; private set; }
 
         private EffectTextWriterSingle writerSingle;
         private int meetTimes;
@@ -35,10 +37,17 @@ namespace AforgeStudios.Signomaly
             script = new List<string>();
         }
 
+        private void OnDestroy()
+        {
+            IsFirstTalkEverHappened = false;
+        }
+
         protected override void SetupComponents()
         {
             base.SetupComponents();
+
             _dialoguePanelUI.SetActive(false);
+            _worldSpaceCanvas.worldCamera = Camera.main;
         }
 
         public override void Interact()
@@ -112,6 +121,7 @@ namespace AforgeStudios.Signomaly
             GlobalService.Instance.TogglePlayerInput(true);
 
             meetTimes++;
+            IsFirstTalkEverHappened = true;
         }
 
         private void OnSentenceEnded()

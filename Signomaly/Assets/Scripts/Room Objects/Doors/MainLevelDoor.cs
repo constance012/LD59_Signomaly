@@ -18,6 +18,11 @@ namespace AforgeStudios.Signomaly
 
 		public override void Interact()
 		{
+			if (!InteractiveNPC.IsFirstTalkEverHappened)
+			{
+				return;
+			}
+
 			base.Interact();
 
 			MainLevelTimer.Instance.StartTimer();
