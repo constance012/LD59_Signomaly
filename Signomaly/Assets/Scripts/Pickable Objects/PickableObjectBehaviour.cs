@@ -16,6 +16,7 @@ namespace AforgeStudios.Signomaly
         [SerializeField] private Transform interactableObjUIPrefab;
 
         private Key interactKey;
+        private Transform playerTransform;
         private Transform interactUITransform;
 
         private bool canShowUI = true;
@@ -26,7 +27,7 @@ namespace AforgeStudios.Signomaly
             {
                 if (interactUITransform == null)
                 {
-                    interactUITransform = Instantiate(interactableObjUIPrefab, transform.position + offset, Quaternion.identity);
+                    interactUITransform = Instantiate(interactableObjUIPrefab, transform.position + offset, Quaternion.identity, transform);
                 }
 
                 TryShowUIPrompt();
@@ -45,6 +46,8 @@ namespace AforgeStudios.Signomaly
                 PlayerPickAndDrop playerInteract = collider.GetComponentInParent<PlayerPickAndDrop>();
                 if (playerInteract != null)
                 {
+                    playerTransform = playerInteract.transform;
+
                     interactKey = playerInteract.GetInteractKey();
 
                     return true;
@@ -72,10 +75,7 @@ namespace AforgeStudios.Signomaly
         public void PickUp(Transform interactorTransform)
         {
             SetCanShowUI(false);
-            if(interactUITransform != null)
-            {
-                SetUIPromptActive(false);
-            }
+            SetUIPromptActive(false);
         }
 
         public void SetLockPickUpState(bool lockInteract)
@@ -95,14 +95,13 @@ namespace AforgeStudios.Signomaly
 
         private void TryShowUIPrompt()
         {
-            if (canShowUI && interactUITransform != null)
+            if (canShowUI)
             {
-                SetUIPromptActive(true);
-                InteractableObjUI interactableObjUI = interactUITransform.GetComponentInChildren<InteractableObjUI>();
+                InteractableObjUI interactableObjUI = GetComponentInChildren<InteractableObjUI>(true);
                 if (interactableObjUI != null)
                 {
                     interactableObjUI.Show(interactKey.ToString(), interactText);
-                    interactUITransform.position = transform.position + offset;
+                    SetUIPromptActive(true);
                 }
             }
         }
